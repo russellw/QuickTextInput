@@ -35,7 +35,7 @@ words = {}
 with conn:
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT word,count FROM words")
+        cursor.execute("SELECT word, count FROM words")
         rs = cursor.fetchall()
         for r in rs:
             s = r[0]
@@ -68,7 +68,9 @@ def copy_to_clipboard():
                     )
                 else:
                     words[s] = 1
-                    cursor.execute("INSERT INTO words(word,count) VALUES(?,1)", (s,))
+                    cursor.execute(
+                        "INSERT INTO words (word, count) VALUES (?, 1)", (s,)
+                    )
         finally:
             cursor.close()
 
