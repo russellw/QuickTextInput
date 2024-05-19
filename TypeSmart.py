@@ -98,10 +98,16 @@ def copy_to_clipboard():
         cursor = conn.cursor()
         try:
             for s in split_alnum_words(text):
-                n = words.get(s, 0)
-                n += 1
-                words[s] = n
-                cursor.execute("insert into words(word,count) values(?,?)", (s, n))
+                if s in words:
+                    n = words[s]
+                    n += 1
+                    words[s] = n
+                    cursor.execute(
+                        "UPDATE words SET count = count + 1 WHERE word = ?", (s,)
+                    )
+                else:
+                    words[s] = 1
+                    cursor.execute("insert into words(word,count) values(?,1)", (s,))
         finally:
             cursor.close()
 
