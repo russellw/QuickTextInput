@@ -1,5 +1,5 @@
-import sqlite3
 import os
+import sqlite3
 import tkinter as tk
 
 # File path
@@ -26,6 +26,20 @@ with conn:
             ) STRICT;
             """
             )
+    finally:
+        cursor.close()
+
+# Read words
+words = {}
+with conn:
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT word,count FROM words")
+        rs = cursor.fetchall()
+        for r in rs:
+            s = r[0]
+            n = r[1]
+            words[s] = n
     finally:
         cursor.close()
 
