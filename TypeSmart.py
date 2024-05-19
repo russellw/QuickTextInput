@@ -17,7 +17,7 @@ root = tk.Tk()
 root.title("TypeSmart")
 
 # Create a Text widget
-text_field = tk.Text(root, height=20, width=80, wrap=tk.WORD)
+text_field = tk.Text(root, height=30, width=80, wrap=tk.WORD)
 text_field.pack()
 text_field.focus_set()
 
