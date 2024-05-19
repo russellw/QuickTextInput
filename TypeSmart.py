@@ -60,9 +60,7 @@ def copy_to_clipboard():
         try:
             for s in split_alnum_words(text):
                 if s in words:
-                    n = words[s]
-                    n += 1
-                    words[s] = n
+                    words[s] += 1
                     cursor.execute(
                         "UPDATE words SET count = count + 1 WHERE word = ?", (s,)
                     )
