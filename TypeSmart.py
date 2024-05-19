@@ -1,4 +1,5 @@
 import os
+import re
 import sqlite3
 import tkinter as tk
 
@@ -76,6 +77,13 @@ def show_suggestion_box(event=None):
         show_suggestion_box.suggestion_box.wm_geometry(f"+{x_root}+{y_root + 20}")
 
 
+def split_alnum_words(s):
+    # Split the string by any non-alphanumeric character
+    words = re.split(r"\W+", s)
+    # Remove empty strings from the result
+    return [word for word in words if word]
+
+
 def copy_to_clipboard():
     # Get the text from the text field
     text = text_field.get("1.0", tk.END)
@@ -85,6 +93,17 @@ def copy_to_clipboard():
     root.clipboard_append(text)
     # Update the clipboard
     root.update()
+
+    with conn:
+        cursor = conn.cursor()
+        try:
+            for s in split_alnum_words(text):
+                n = words.get(s, 0)
+                n += 1
+                words[s] = n
+                cursor.execute("insert into words(word,count) values(?,?)", (s, n))
+        finally:
+            cursor.close()
 
 
 # Create the main window
