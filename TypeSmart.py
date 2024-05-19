@@ -73,6 +73,19 @@ def copy_to_clipboard():
             cursor.close()
 
 
+def get_last_line():
+    # Get the end position index of the text widget
+    end_index = text_field.index(tk.END)
+    # Extract the line number from the end index
+    last_line_num = int(end_index.split(".")[0]) - 1
+    # Get the text of the last line
+    return text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
+
+
+def on_key_release(event):
+    show_suggestion_box(event)
+
+
 def show_suggestion_box(event=None):
     # Get the position of the cursor
     cursor_index = text_field.index(tk.INSERT)
@@ -122,7 +135,7 @@ text_field.pack()
 text_field.focus_set()
 
 # Bind the key release event to show the suggestion box
-text_field.bind("<KeyRelease>", show_suggestion_box)
+text_field.bind("<KeyRelease>", on_key_release)
 
 # Create the copy button with internal padding and align it to the right side
 copy_button = tk.Button(
