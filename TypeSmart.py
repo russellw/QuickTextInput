@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 def copy_to_clipboard():
     # Get the text from the text field
     text = text_field.get("1.0", tk.END)
@@ -9,6 +10,7 @@ def copy_to_clipboard():
     root.clipboard_append(text)
     # Update the clipboard
     root.update()
+
 
 # Create the main window
 root = tk.Tk()
@@ -20,8 +22,8 @@ text_field.pack(pady=10)
 text_field.focus_set()
 
 # Create the copy button
-copy_button = tk.Button(root, text="Copy to Clipboard", command=copy_to_clipboard)
-copy_button.pack(pady=10)
+copy_button = tk.Button(root, text="Copy (F12)", command=copy_to_clipboard)
+copy_button.pack(pady=10, anchor="e")
 
 # Bind the F12 key to the copy_to_clipboard function
 root.bind("<F12>", lambda event: copy_to_clipboard())
