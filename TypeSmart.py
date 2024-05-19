@@ -45,6 +45,34 @@ with conn:
         cursor.close()
 
 
+def copy_to_clipboard():
+    # Get the text from the text field
+    text = text_field.get("1.0", tk.END)
+    # Clear the clipboard
+    root.clipboard_clear()
+    # Append the text to the clipboard
+    root.clipboard_append(text)
+    # Update the clipboard
+    root.update()
+
+    with conn:
+        cursor = conn.cursor()
+        try:
+            for s in split_alnum_words(text):
+                if s in words:
+                    n = words[s]
+                    n += 1
+                    words[s] = n
+                    cursor.execute(
+                        "UPDATE words SET count = count + 1 WHERE word = ?", (s,)
+                    )
+                else:
+                    words[s] = 1
+                    cursor.execute("INSERT INTO words(word,count) VALUES(?,1)", (s,))
+        finally:
+            cursor.close()
+
+
 def show_suggestion_box(event=None):
     # Get the position of the cursor
     cursor_index = text_field.index(tk.INSERT)
@@ -82,34 +110,6 @@ def split_alnum_words(s):
     words = re.split(r"\W+", s)
     # Remove empty strings from the result
     return [word for word in words if word]
-
-
-def copy_to_clipboard():
-    # Get the text from the text field
-    text = text_field.get("1.0", tk.END)
-    # Clear the clipboard
-    root.clipboard_clear()
-    # Append the text to the clipboard
-    root.clipboard_append(text)
-    # Update the clipboard
-    root.update()
-
-    with conn:
-        cursor = conn.cursor()
-        try:
-            for s in split_alnum_words(text):
-                if s in words:
-                    n = words[s]
-                    n += 1
-                    words[s] = n
-                    cursor.execute(
-                        "UPDATE words SET count = count + 1 WHERE word = ?", (s,)
-                    )
-                else:
-                    words[s] = 1
-                    cursor.execute("insert into words(word,count) values(?,1)", (s,))
-        finally:
-            cursor.close()
 
 
 # Create the main window
