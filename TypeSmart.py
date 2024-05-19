@@ -1,6 +1,38 @@
 import tkinter as tk
 
 
+def show_suggestion_box(event=None):
+    # Get the position of the cursor
+    cursor_index = text_field.index(tk.INSERT)
+    x, y, _, _ = text_field.bbox(cursor_index)
+
+    # Convert the text box coordinates to root window coordinates
+    x_root = x + text_field.winfo_rootx()
+    y_root = y + text_field.winfo_rooty()
+
+    # Create the suggestion box if it doesn't exist
+    if (
+        not hasattr(show_suggestion_box, "suggestion_box")
+        or not show_suggestion_box.suggestion_box.winfo_exists()
+    ):
+        show_suggestion_box.suggestion_box = tk.Toplevel(root)
+        show_suggestion_box.suggestion_box.wm_overrideredirect(True)
+        show_suggestion_box.suggestion_box.wm_geometry(
+            f"+{x_root}+{y_root + 20}"
+        )  # Offset below the cursor position
+
+        suggestions = ["1. Lenovo", "2. HP", "3. Dell", "4. Apple", "5. Asus"]
+        for suggestion in suggestions:
+            label = tk.Label(
+                show_suggestion_box.suggestion_box, text=suggestion, anchor="w"
+            )
+            label.pack(fill=tk.BOTH)
+
+    else:
+        # If the suggestion box already exists, just update its position
+        show_suggestion_box.suggestion_box.wm_geometry(f"+{x_root}+{y_root + 20}")
+
+
 def copy_to_clipboard():
     # Get the text from the text field
     text = text_field.get("1.0", tk.END)
@@ -20,6 +52,9 @@ root.title("TypeSmart")
 text_field = tk.Text(root, height=30, width=80, wrap=tk.WORD)
 text_field.pack()
 text_field.focus_set()
+
+# Bind the key release event to show the suggestion box
+text_field.bind("<KeyRelease>", show_suggestion_box)
 
 # Create the copy button with internal padding and align it to the right side
 copy_button = tk.Button(
