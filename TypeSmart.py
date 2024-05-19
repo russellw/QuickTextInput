@@ -16,13 +16,15 @@ def copy_to_clipboard():
 root = tk.Tk()
 root.title("TypeSmart")
 
-# Create a larger Text widget
+# Create a Text widget
 text_field = tk.Text(root, height=20, width=80, wrap=tk.WORD)
 text_field.pack(pady=10)
 text_field.focus_set()
 
-# Create the copy button
-copy_button = tk.Button(root, text="Copy (F12)", command=copy_to_clipboard)
+# Create the copy button with internal padding and align it to the right side
+copy_button = tk.Button(
+    root, text="Copy to Clipboard (F12)", command=copy_to_clipboard, padx=20, pady=10
+)
 copy_button.pack(pady=10, anchor="e")
 
 # Bind the F12 key to the copy_to_clipboard function
