@@ -6,7 +6,7 @@ import tkinter as tk
 # File path
 user_profile = os.environ["USERPROFILE"]
 documents_dir = os.path.join(user_profile, "Documents")
-db_path = os.path.join(documents_dir, "TypeSmart.db")
+db_path = os.path.join(documents_dir, "QuickTextInput.db")
 
 # Connect to database
 conn = sqlite3.connect(db_path)
@@ -127,7 +127,7 @@ def split_alnum_words(s):
 
 # Create the main window
 root = tk.Tk()
-root.title("TypeSmart")
+root.title("QuickTextInput")
 
 # Create a Text widget
 text_field = tk.Text(root, height=30, width=80, wrap=tk.WORD, insertofftime=0)
