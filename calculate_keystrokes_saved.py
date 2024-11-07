@@ -12,7 +12,7 @@ class AutocompleteProgram:
 
     def build_word_frequency(self):
         """Read the corpus file and build frequency dictionary for words."""
-        with open(self.corpus_file, "r") as f:
+        with open(self.corpus_file, "r", encoding="utf-8") as f:
             for line in f:
                 words = (
                     line.lower()
@@ -38,7 +38,7 @@ class AutocompleteProgram:
         total_keystrokes = 0
         saved_keystrokes = 0
 
-        with open(self.target_file, "r") as f:
+        with open(self.target_file, "r", encoding="utf-8") as f:
             for line in f:
                 words = (
                     line.lower()
