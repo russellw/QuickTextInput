@@ -84,7 +84,7 @@ def get_last_line():
 
 def on_key_release(event):
     c = event.keysym
-    
+
     if c.isalpha():
         # Get the position of the cursor
         cursor_index = text_field.index(tk.INSERT)
@@ -96,9 +96,7 @@ def on_key_release(event):
 
         suggestions = ["1. Lenovo", "2. HP", "3. Dell", "4. Apple", "5. Asus"]
         for suggestion in suggestions:
-            label = tk.Label(
-                suggestion_box, text=suggestion, anchor="w"
-            )
+            label = tk.Label(suggestion_box, text=suggestion, anchor="w")
             label.pack(fill=tk.BOTH)
 
         suggestion_box.wm_geometry(f"+{x_root}+{y_root + 20}")
@@ -124,8 +122,8 @@ text_field.focus_set()
 # Bind the key release event to show the suggestion box
 text_field.bind("<KeyRelease>", on_key_release)
 
-#Create the suggestion box
-suggestion_box=tk.Toplevel(root)
+# Create the suggestion box
+suggestion_box = tk.Toplevel(root)
 suggestion_box.wm_overrideredirect(True)
 suggestion_box.withdraw()
 
