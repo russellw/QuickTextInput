@@ -1,1 +1,1 @@
-pyinstaller --onefile QuickTextInput.py
+pyinstaller --onefile -w QuickTextInput.py
