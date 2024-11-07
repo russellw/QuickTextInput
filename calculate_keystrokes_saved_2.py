@@ -13,7 +13,7 @@ class ContextualAutocompleteProgram:
 
     def build_word_frequency(self):
         """Read the corpus file and build unigram and bigram frequency dictionaries."""
-        with open(self.corpus_file, "r") as f:
+        with open(self.corpus_file, "r", encoding="utf-8") as f:
             previous_word = None
             for line in f:
                 words = (
@@ -47,7 +47,7 @@ class ContextualAutocompleteProgram:
         saved_keystrokes = 0
         previous_word = None
 
-        with open(self.target_file, "r") as f:
+        with open(self.target_file, "r", encoding="utf-8") as f:
             for line in f:
                 words = (
                     line.lower()
