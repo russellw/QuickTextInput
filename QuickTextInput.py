@@ -10,7 +10,7 @@ documents_dir = os.path.join(user_profile, "Documents")
 db_path = os.path.join(documents_dir, "QuickTextInput.db")
 
 # Connect to database
-conn = sqlite3.connect(db_path)
+conn = sqlite3.connect(db_path, autocommit=True)
 conn.execute("PRAGMA foreign_keys=ON")
 
 # Initialize tables
