@@ -87,7 +87,8 @@ def on_key_release(event):
     global suggestions
 
     # Check if cursor is at the end
-    if text_field.index("insert") != text_field.index("end-1c"):
+    end_index = text_field.index("end-1c")
+    if text_field.index("insert") != end_index:
         suggestion_box.withdraw()
         return
 
@@ -96,8 +97,7 @@ def on_key_release(event):
     # Only letters trigger suggestions
     if c.isalpha():
         # Update suggestions
-        end_index = text_field.index(tk.END)
-        last_line_num = int(end_index.split(".")[0]) - 1
+        last_line_num = int(end_index.split(".")[0])
         last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
         prefix = last_word(last_line)
         suggestions = prefix_dict[prefix]
