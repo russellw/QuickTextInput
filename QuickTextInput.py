@@ -153,12 +153,13 @@ def pick(i):
     if len(suggestions) <= i:
         return
     end_index = text_field.index("end-1c")
-    last_line_num = int(end_index.split(".")[0]) 
+    last_line_num = int(end_index.split(".")[0])
     last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
     n = len(last_word(last_line))
-    start_index = f"{end_index} - {n} chars"  
-    text_field.delete(start_index, end_index) 
-    text_field.insert("insert", suggestions[i]+' ')
+    start_index = f"{end_index} - {n} chars"
+    text_field.delete(start_index, end_index)
+    text_field.insert("insert", suggestions[i] + " ")
+
 
 # Main window
 root = tk.Tk()
