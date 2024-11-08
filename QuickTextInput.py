@@ -152,11 +152,13 @@ def on_key_release(event):
 def pick(i):
     if len(suggestions) <= i:
         return
-    end_index = text_field.index(tk.END)
-    last_line_num = int(end_index.split(".")[0]) - 1
+    end_index = text_field.index("end-1c")
+    last_line_num = int(end_index.split(".")[0]) 
     last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
     n = len(last_word(last_line))
-
+    start_index = f"{end_index} - {n} chars"  
+    text_field.delete(start_index, end_index) 
+    text_field.insert("insert", suggestions[i]+' ')
 
 # Main window
 root = tk.Tk()
@@ -167,7 +169,6 @@ text_field = tk.Text(root, height=30, width=80, wrap=tk.WORD, insertofftime=0)
 text_field.pack()
 text_field.focus_set()
 
-text_field.bind("<KeyRelease>", on_key_release)
 
 # Suggestions
 suggestions = []
@@ -183,7 +184,8 @@ copy_button = tk.Button(
 )
 copy_button.pack(padx=5, pady=5, anchor="e")
 
-# Bind the F12 key to the copy_to_clipboard function
+# Bind events
+text_field.bind("<KeyRelease>", on_key_release)
 root.bind("<F12>", lambda event: copy_to_clipboard())
 
 # Run the Tkinter event loop
