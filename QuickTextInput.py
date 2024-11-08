@@ -1,4 +1,5 @@
 import os
+from collections import  defaultdict
 import re
 import sqlite3
 import tkinter as tk
@@ -30,20 +31,31 @@ with conn:
     finally:
         cursor.close()
 
-# Read words
-words = {}
+# Read word frequencies
+word_freq = {}
+prefix_dict = defaultdict(list)
 with conn:
     cursor = conn.cursor()
     try:
         cursor.execute("SELECT word, count FROM words")
         rs = cursor.fetchall()
         for r in rs:
-            s = r[0]
+            word = r[0]
             n = r[1]
-            words[s] = n
+            word_freq[word] = n
+
+            # For each prefix in a word, add the word to the prefix dictionary
+            for i in range(1, len(word) + 1):
+                prefix = word[:i]
+                prefix_dict[prefix].append(word)
     finally:
         cursor.close()
 
+# Limit each prefix entry to the 10 most frequent words
+for prefix in prefix_dict:
+    prefix_dict[prefix] = sorted(
+        prefix_dict[prefix], key=lambda w: -word_freq[w]
+    )[:10]
 
 def copy_to_clipboard():
     # Get the text from the text field
