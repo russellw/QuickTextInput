@@ -71,6 +71,7 @@ def copy_to_clipboard():
             words[word] = 1
             cursor.execute("INSERT INTO words (word, count) VALUES (?, 1)", (word,))
 
+
 def last_word(s):
     # Split the string by any non-alphanumeric character
     words = re.split(r"\W+", s)
@@ -80,6 +81,7 @@ def last_word(s):
 
     # Last word
     return words[-1]
+
 
 def on_key_release(event):
     # Check if cursor is at the end
@@ -129,6 +131,7 @@ def on_key_release(event):
     # The suggestion box never just hangs around
     # It is either updated or hidden
     suggestion_box.withdraw()
+
 
 # Create the main window
 root = tk.Tk()
