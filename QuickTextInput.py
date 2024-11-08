@@ -78,8 +78,9 @@ def on_key_release(event):
         suggestion_box.withdraw()
         return
 
-    c = event.keysym
+    c = event.char
 
+    # Only letters trigger suggestions
     if c.isalpha():
         # Update suggestions
         end_index = text_field.index(tk.END)
@@ -114,6 +115,11 @@ def on_key_release(event):
 
         # Make sure suggestion box is visible
         suggestion_box.deiconify()
+        return
+
+    # The suggestion box never just hangs around
+    # It is either updated or hidden
+    suggestion_box.withdraw()
 
 
 def last_word(s):
