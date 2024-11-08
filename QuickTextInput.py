@@ -152,6 +152,10 @@ def on_key_release(event):
 def pick(i):
     if len(suggestions) <= i:
         return
+    end_index = text_field.index(tk.END)
+    last_line_num = int(end_index.split(".")[0]) - 1
+    last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
+    n = len(last_word(last_line))
 
 
 # Create the main window
