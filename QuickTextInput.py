@@ -36,8 +36,8 @@ cursor.execute("SELECT word, count FROM words")
 rs = cursor.fetchall()
 for r in rs:
     word = r[0]
-    n = r[1]
-    word_freq[word] = n
+    count = r[1]
+    word_freq[word] = count
 
     # For each prefix in a word, add the word to the prefix dictionary
     for i in range(1, len(word) + 1):
@@ -79,6 +79,17 @@ def get_last_line():
 
 
 def on_key_release(event):
+    # Get current cursor position
+    cursor_position = text_field.index("insert")
+
+    # Get the end position of the text content
+    end_position = text_field.index("end-1c")
+
+    # Check if cursor is at the end
+    if cursor_position != end_position:
+        suggestion_box.withdraw()
+        return
+
     c = event.keysym
 
     if c.isalpha():
