@@ -158,19 +158,21 @@ def pick(i):
     n = len(last_word(last_line))
 
 
-# Create the main window
+# Main window
 root = tk.Tk()
 root.title("QuickTextInput")
 
-# Create a Text widget
+# Text box
 text_field = tk.Text(root, height=30, width=80, wrap=tk.WORD, insertofftime=0)
 text_field.pack()
 text_field.focus_set()
 
-# Bind the key release event to show the suggestion box
 text_field.bind("<KeyRelease>", on_key_release)
 
-# Create the suggestion box
+# Suggestions
+suggestions = []
+
+# Suggestion box
 suggestion_box = tk.Toplevel(root)
 suggestion_box.wm_overrideredirect(True)
 suggestion_box.withdraw()
