@@ -106,7 +106,10 @@ def on_key_release(event):
         x_root = x + text_field.winfo_rootx()
         y_root = y + text_field.winfo_rooty()
 
+        # Update suggestions
         suggestions = ["1. Lenovo", "2. HP", "3. Dell", "4. Apple", "5. Asus"]
+        for widget in suggestion_box.winfo_children():
+            widget.destroy()
         for suggestion in suggestions:
             label = tk.Label(suggestion_box, text=suggestion, anchor="w")
             label.pack(fill=tk.BOTH)
