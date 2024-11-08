@@ -30,12 +30,10 @@ class ContextualAutocompleteProgram:
 
         # Populate prefix-based dictionary using both unigram and bigram frequencies
         for word in self.word_freq:
-            # For each prefix of a word, add the word to the prefix dictionary
             for i in range(1, len(word) + 1):
                 prefix = word[:i]
                 self.prefix_dict[prefix].append(word)
 
-        # Limit each prefix entry to the 10 most frequent words
         for prefix in self.prefix_dict:
             self.prefix_dict[prefix] = sorted(
                 self.prefix_dict[prefix], key=lambda w: -self.word_freq[w]
@@ -64,7 +62,7 @@ class ContextualAutocompleteProgram:
 
     def keystrokes_for_word(self, word, previous_word):
         """Calculate keystrokes saved for a given word, considering the previous word context."""
-        predictions = self.get_predictions(word, previous_word)
+        predictions = self.get_combined_predictions(word, previous_word)
 
         for i in range(1, len(word) + 1):
             prefix = word[:i]
@@ -72,22 +70,31 @@ class ContextualAutocompleteProgram:
                 return len(word) - i  # Keystrokes saved by selecting the word
         return 0  # No savings if the word isn't predicted
 
-    def get_predictions(self, word, previous_word):
-        """Get the top 10 predicted words based on prefix and previous word context."""
-        predictions = {}
+    def get_combined_predictions(self, word, previous_word):
+        """Get the top 10 predicted words based on prefix, combining unigram and bigram context."""
+        predictions = defaultdict(list)
+
+        # Get bigram predictions if previous_word exists
         if previous_word in self.bigram_freq:
             bigram_candidates = self.bigram_freq[previous_word]
             for prefix in set(word[:i] for i in range(1, len(word) + 1)):
-                # Get top 10 predictions for this prefix in the context of previous_word
                 candidates = sorted(
                     bigram_candidates.keys(), key=lambda w: -bigram_candidates[w]
                 )
                 predictions[prefix] = candidates[:10]
 
-        # Fallback to unigram predictions if no bigram data is available
-        if not predictions:
-            for prefix in set(word[:i] for i in range(1, len(word) + 1)):
-                predictions[prefix] = self.prefix_dict.get(prefix, [])
+        # Merge in unigram predictions, ensuring no duplicates
+        for prefix in set(word[:i] for i in range(1, len(word) + 1)):
+            unigram_predictions = self.prefix_dict.get(prefix, [])
+            if predictions[prefix]:
+                # Extend bigram predictions with unigram, but avoid duplicates
+                combined_predictions = predictions[prefix] + [
+                    w for w in unigram_predictions if w not in predictions[prefix]
+                ]
+                predictions[prefix] = combined_predictions[:10]
+            else:
+                # If no bigram predictions, use unigram only
+                predictions[prefix] = unigram_predictions[:10]
 
         return predictions
 
