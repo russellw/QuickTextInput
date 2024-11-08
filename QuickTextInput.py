@@ -51,7 +51,7 @@ for prefix in prefix_dict:
 
 def copy_to_clipboard():
     # Get the text from the text field
-    text = text_field.get("1.0", tk.END)
+    text = text_widget.get("1.0", tk.END)
 
     # Clear the clipboard
     root.clipboard_clear()
@@ -87,8 +87,8 @@ def on_key_release(event):
     global suggestions
 
     # Check if cursor is at the end
-    end_index = text_field.index("end-1c")
-    if text_field.index("insert") != end_index:
+    end_index = text_widget.index("end-1c")
+    if text_widget.index("insert") != end_index:
         suggestion_box.withdraw()
         return
 
@@ -98,7 +98,7 @@ def on_key_release(event):
     if c.isalpha():
         # Update suggestions
         last_line_num = int(end_index.split(".")[0])
-        last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
+        last_line = text_widget.get(f"{last_line_num}.0", f"{last_line_num}.end")
         prefix = last_word(last_line)
         suggestions = prefix_dict[prefix]
         if not suggestions:
@@ -118,11 +118,11 @@ def on_key_release(event):
             i += 1
 
         # Position suggestion box below cursor
-        cursor_index = text_field.index(tk.INSERT)
-        x, y, _, _ = text_field.bbox(cursor_index)
+        cursor_index = text_widget.index(tk.INSERT)
+        x, y, _, _ = text_widget.bbox(cursor_index)
 
-        x_root = x + text_field.winfo_rootx()
-        y_root = y + text_field.winfo_rooty()
+        x_root = x + text_widget.winfo_rootx()
+        y_root = y + text_widget.winfo_rooty()
 
         suggestion_box.wm_geometry(f"+{x_root}+{y_root + 20}")
 
@@ -137,7 +137,7 @@ def on_key_release(event):
     # Space after punctuation
     # The disjunction is because the empty string is considered to be in all strings
     if c and c in ",.;:":
-        text_field.insert("insert", " ")
+        text_widget.insert("insert", " ")
         return
 
     # Digit picks suggestion
@@ -153,42 +153,88 @@ def on_key_release(event):
 def pick(i):
     if len(suggestions) <= i:
         return
-    end_index = text_field.index("end-1c")
+    end_index = text_widget.index("end-1c")
     last_line_num = int(end_index.split(".")[0])
-    last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
+    last_line = text_widget.get(f"{last_line_num}.0", f"{last_line_num}.end")
     n = len(last_word(last_line))
     start_index = f"{end_index} - {n} chars"
-    text_field.delete(start_index, end_index)
-    text_field.insert("insert", suggestions[i] + " ")
+    text_widget.delete(start_index, end_index)
+    text_widget.insert("insert", suggestions[i] + " ")
 
 
-# Main window
+# Initialize the main window and maximize it
 root = tk.Tk()
-root.title("QuickTextInput")
+root.state('zoomed')  # Maximize window
+root.title("Text Editor with Read-Only Info Cells")
 
-# Text box
-text_field = tk.Text(root, height=30, width=80, wrap=tk.WORD, insertofftime=0)
-text_field.pack()
-text_field.focus_set()
+# Configure the main window's layout
+root.grid_rowconfigure(0, weight=1)  # Text widget should expand
+root.grid_rowconfigure(1, weight=0)  # First row of cells
+root.grid_rowconfigure(2, weight=0)  # Second row of cells
+root.grid_columnconfigure(0, weight=1)
+
+# Create the main text widget that occupies most of the screen
+text_widget = tk.Text(root)
+text_widget.grid(row=0, column=0, sticky="nsew")
+text_widget.focus_set()
+
+# Frame to hold the cells below the text widget
+cell_frame = tk.Frame(root)
+cell_frame.grid(row=1, column=0, sticky="ew", rowspan=2)
+
+# Set equal weight for each column in the cell frame to ensure uniform widths
+for col in range(20):
+    cell_frame.grid_columnconfigure(col, weight=1)
+
+# Dictionary to store read-only label references for programmatic updates
+read_only_labels = {}
+
+# Helper function to create a row of read-only cells
+def create_cell_row(row, prefix):
+    for i in range(10):
+        # Create label for the identifier (e.g., 'F1', 'F2', etc.)
+        label_id = tk.Label(cell_frame, text=f"{prefix}{i+1}")
+        label_id.grid(row=row, column=i * 2, sticky="e", padx=2, pady=2)
+        
+        # Create read-only text label with consistent width and relief for clarity
+        read_only_text = tk.Label(cell_frame, text="", anchor="w", relief="sunken", width=10)
+        read_only_text.grid(row=row, column=i * 2 + 1, sticky="ew", padx=2, pady=2)
+        
+        # Store the label for programmatic access
+        read_only_labels[f"{prefix}{i+1}"] = read_only_text
+
+# First row with 'F1' to 'F10'
+create_cell_row(0, "F")
+
+# Second row with '1' to '10'
+create_cell_row(1, "")
+
+# Example function to update a read-only label
+def update_read_only_label(cell_id, text):
+    if cell_id in read_only_labels:
+        read_only_labels[cell_id].config(text=text)
+
+# Example updates (programmatically change the text)
+update_read_only_label("F1", "Example F1 Text")
+update_read_only_label("1", "Example 1 Text")
+
+
 
 
 # Suggestions
 suggestions = []
 
-# Suggestion box
-suggestion_box = tk.Toplevel(root)
-suggestion_box.wm_overrideredirect(True)
-suggestion_box.withdraw()
-
+'''
 # Create the copy button with internal padding and align it to the right side
 copy_button = tk.Button(
     root, text="Copy to Clipboard (F12)", command=copy_to_clipboard, padx=10, pady=10
 )
 copy_button.pack(padx=5, pady=5, anchor="e")
+'''
 
 # Bind events
-text_field.bind("<KeyRelease>", on_key_release)
-root.bind("<F12>", lambda event: copy_to_clipboard())
+text_widget.bind("<KeyRelease>", on_key_release)
+#root.bind("<F12>", lambda event: copy_to_clipboard())
 
 # Run the Tkinter event loop
 root.mainloop()
