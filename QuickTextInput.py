@@ -135,7 +135,8 @@ def on_key_release(event):
     suggestion_box.withdraw()
 
     # Space after punctuation
-    if c in ",.;:":
+    # The disjunction is because the empty string is considered to be in all strings
+    if c and c in ",.;:":
         text_field.insert("insert", " ")
         return
 
