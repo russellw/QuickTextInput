@@ -14,42 +14,35 @@ conn = sqlite3.connect(db_path, autocommit=True)
 conn.execute("PRAGMA foreign_keys=ON")
 
 # Initialize tables
-with conn:
-    cursor = conn.cursor()
-    try:
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-        tables = cursor.fetchall()
-        if len(tables) == 0:
-            cursor.execute(
-                """
-            CREATE TABLE words (
-                word TEXT PRIMARY KEY,
-                count INTEGER DEFAULT 0
-            ) STRICT;
-            """
-            )
-    finally:
-        cursor.close()
+cursor = conn.cursor()
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+tables = cursor.fetchall()
+if len(tables) == 0:
+    cursor.execute(
+        """
+    CREATE TABLE words (
+        word TEXT PRIMARY KEY,
+        count INTEGER DEFAULT 0
+    ) STRICT;
+    """
+    )
 
 # Read word frequencies
 word_freq = {}
 prefix_dict = defaultdict(list)
-with conn:
-    cursor = conn.cursor()
-    try:
-        cursor.execute("SELECT word, count FROM words")
-        rs = cursor.fetchall()
-        for r in rs:
-            word = r[0]
-            n = r[1]
-            word_freq[word] = n
 
-            # For each prefix in a word, add the word to the prefix dictionary
-            for i in range(1, len(word) + 1):
-                prefix = word[:i]
-                prefix_dict[prefix].append(word)
-    finally:
-        cursor.close()
+cursor = conn.cursor()
+cursor.execute("SELECT word, count FROM words")
+rs = cursor.fetchall()
+for r in rs:
+    word = r[0]
+    n = r[1]
+    word_freq[word] = n
+
+    # For each prefix in a word, add the word to the prefix dictionary
+    for i in range(1, len(word) + 1):
+        prefix = word[:i]
+        prefix_dict[prefix].append(word)
 
 # Limit each prefix entry to the 10 most frequent words
 for prefix in prefix_dict:
@@ -66,22 +59,18 @@ def copy_to_clipboard():
     # Update the clipboard
     root.update()
 
-    with conn:
-        cursor = conn.cursor()
-        try:
-            for s in split_alnum_words(text):
-                if s in words:
-                    words[s] += 1
-                    cursor.execute(
-                        "UPDATE words SET count = count + 1 WHERE word = ?", (s,)
-                    )
-                else:
-                    words[s] = 1
-                    cursor.execute(
-                        "INSERT INTO words (word, count) VALUES (?, 1)", (s,)
-                    )
-        finally:
-            cursor.close()
+    cursor = conn.cursor()
+    for word in split_alnum_words(text):
+        if word in words:
+            words[word] += 1
+            cursor.execute(
+                "UPDATE words SET count = count + 1 WHERE word = ?", (word,)
+            )
+        else:
+            words[word] = 1
+            cursor.execute(
+                "INSERT INTO words (word, count) VALUES (?, 1)", (word,)
+            )
 
 
 def get_last_line():
