@@ -63,14 +63,10 @@ def copy_to_clipboard():
     for word in split_alnum_words(text):
         if word in words:
             words[word] += 1
-            cursor.execute(
-                "UPDATE words SET count = count + 1 WHERE word = ?", (word,)
-            )
+            cursor.execute("UPDATE words SET count = count + 1 WHERE word = ?", (word,))
         else:
             words[word] = 1
-            cursor.execute(
-                "INSERT INTO words (word, count) VALUES (?, 1)", (word,)
-            )
+            cursor.execute("INSERT INTO words (word, count) VALUES (?, 1)", (word,))
 
 
 def get_last_line():
