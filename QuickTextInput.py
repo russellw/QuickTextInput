@@ -1,8 +1,8 @@
 import os
-from collections import  defaultdict
 import re
 import sqlite3
 import tkinter as tk
+from collections import defaultdict
 
 # File path
 user_profile = os.environ["USERPROFILE"]
@@ -53,9 +53,8 @@ with conn:
 
 # Limit each prefix entry to the 10 most frequent words
 for prefix in prefix_dict:
-    prefix_dict[prefix] = sorted(
-        prefix_dict[prefix], key=lambda w: -word_freq[w]
-    )[:10]
+    prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:10]
+
 
 def copy_to_clipboard():
     # Get the text from the text field
