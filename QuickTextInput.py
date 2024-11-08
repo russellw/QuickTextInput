@@ -44,9 +44,9 @@ for r in rs:
         prefix = word[:i]
         prefix_dict[prefix].append(word)
 
-# Limit each prefix entry to the 10 most frequent words
+# Limit each prefix entry to the 20 most frequent words
 for prefix in prefix_dict:
-    prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:10]
+    prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
 
 
 def copy_to_clipboard():
@@ -186,8 +186,8 @@ cell_frame.grid(row=1, column=0, sticky="ew", rowspan=2)
 for col in range(20):
     cell_frame.grid_columnconfigure(col, weight=1)
 
-# Dictionary to store read-only label references for programmatic updates
-read_only_labels = {}
+# Store read-only label references for programmatic updates
+suggestion_cells = []
 
 # Helper function to create a row of read-only cells
 def create_cell_row(row, prefix):
@@ -203,7 +203,7 @@ def create_cell_row(row, prefix):
         read_only_text.grid(row=row, column=i * 2 + 1, sticky="ew", padx=2, pady=2)
 
         # Store the label for programmatic access
-        read_only_labels[f"{prefix}{i+1}"] = read_only_text
+        suggestion_cells.append(read_only_text)
 
 
 # First row with 'F1' to 'F10'
@@ -211,6 +211,9 @@ create_cell_row(0, "F")
 
 # Second row with '1' to '10'
 create_cell_row(1, "")
+
+# Second row corresponds to first suggestions
+suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
 
 # Example function to update a read-only label
 def update_read_only_label(cell_id, text):
