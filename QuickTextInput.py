@@ -52,10 +52,13 @@ for prefix in prefix_dict:
 def copy_to_clipboard():
     # Get the text from the text field
     text = text_field.get("1.0", tk.END)
+
     # Clear the clipboard
     root.clipboard_clear()
+
     # Append the text to the clipboard
     root.clipboard_append(text)
+
     # Update the clipboard
     root.update()
 
@@ -72,8 +75,10 @@ def copy_to_clipboard():
 def get_last_line():
     # Get the end position index of the text widget
     end_index = text_field.index(tk.END)
+
     # Extract the line number from the end index
     last_line_num = int(end_index.split(".")[0]) - 1
+
     # Get the text of the last line
     return text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
 
@@ -113,6 +118,7 @@ def on_key_release(event):
 def split_alnum_words(s):
     # Split the string by any non-alphanumeric character
     words = re.split(r"\W+", s)
+
     # Remove empty strings from the result
     return [word for word in words if word]
 
