@@ -132,6 +132,11 @@ def on_key_release(event):
     # It is either updated or hidden
     suggestion_box.withdraw()
 
+    # Space after punctuation
+    if c in ",.;:":
+        text_field.insert("insert", " ")
+        return
+
 
 # Create the main window
 root = tk.Tk()
