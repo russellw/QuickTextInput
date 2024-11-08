@@ -164,7 +164,7 @@ def pick(i):
 
 # Initialize the main window and maximize it
 root = tk.Tk()
-root.state('zoomed')  # Maximize window
+root.state("zoomed")  # Maximize window
 root.title("Text Editor with Read-Only Info Cells")
 
 # Configure the main window's layout
@@ -195,13 +195,16 @@ def create_cell_row(row, prefix):
         # Create label for the identifier (e.g., 'F1', 'F2', etc.)
         label_id = tk.Label(cell_frame, text=f"{prefix}{i+1}")
         label_id.grid(row=row, column=i * 2, sticky="e", padx=2, pady=2)
-        
+
         # Create read-only text label with consistent width and relief for clarity
-        read_only_text = tk.Label(cell_frame, text="", anchor="w", relief="sunken", width=10)
+        read_only_text = tk.Label(
+            cell_frame, text="", anchor="w", relief="sunken", width=10
+        )
         read_only_text.grid(row=row, column=i * 2 + 1, sticky="ew", padx=2, pady=2)
-        
+
         # Store the label for programmatic access
         read_only_labels[f"{prefix}{i+1}"] = read_only_text
+
 
 # First row with 'F1' to 'F10'
 create_cell_row(0, "F")
@@ -214,27 +217,28 @@ def update_read_only_label(cell_id, text):
     if cell_id in read_only_labels:
         read_only_labels[cell_id].config(text=text)
 
+
 # Example updates (programmatically change the text)
 update_read_only_label("F1", "Example F1 Text")
 update_read_only_label("1", "Example 1 Text")
 
 
-
-
 # Suggestions
 suggestions = []
 
-'''
+"""
+
 # Create the copy button with internal padding and align it to the right side
 copy_button = tk.Button(
     root, text="Copy to Clipboard (F12)", command=copy_to_clipboard, padx=10, pady=10
 )
 copy_button.pack(padx=5, pady=5, anchor="e")
-'''
+"""
 
 # Bind events
 text_widget.bind("<KeyRelease>", on_key_release)
-#root.bind("<F12>", lambda event: copy_to_clipboard())
+
+# Root.bind("<F12>", lambda event: copy_to_clipboard())
 
 # Run the Tkinter event loop
 root.mainloop()
