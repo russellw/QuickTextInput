@@ -84,6 +84,8 @@ def last_word(s):
 
 
 def on_key_release(event):
+    global suggestions
+
     # Check if cursor is at the end
     if text_field.index("insert") != text_field.index("end-1c"):
         suggestion_box.withdraw()
@@ -135,6 +137,20 @@ def on_key_release(event):
     # Space after punctuation
     if c in ",.;:":
         text_field.insert("insert", " ")
+        return
+
+    # Digit picks suggestion
+    k = event.keycode
+    if k == 48:
+        pick(9)
+        return
+    if 49 <= k <= 57:
+        pick(k - 49)
+        return
+
+
+def pick(i):
+    if len(suggestions) <= i:
         return
 
 
