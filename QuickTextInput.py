@@ -72,58 +72,59 @@ def copy_to_clipboard():
             cursor.execute("INSERT INTO words (word, count) VALUES (?, 1)", (word,))
 
 
-def get_last_line():
-    # Get the end position index of the text widget
-    end_index = text_field.index(tk.END)
-
-    # Extract the line number from the end index
-    last_line_num = int(end_index.split(".")[0]) - 1
-
-    # Get the text of the last line
-    return text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
-
-
 def on_key_release(event):
-    # Get current cursor position
-    cursor_position = text_field.index("insert")
-
-    # Get the end position of the text content
-    end_position = text_field.index("end-1c")
-
     # Check if cursor is at the end
-    if cursor_position != end_position:
+    if text_field.index("insert") != text_field.index("end-1c"):
         suggestion_box.withdraw()
         return
 
     c = event.keysym
 
     if c.isalpha():
-        # Get the position of the cursor
+        # Update suggestions
+        end_index = text_field.index(tk.END)
+        last_line_num = int(end_index.split(".")[0]) - 1
+        last_line = text_field.get(f"{last_line_num}.0", f"{last_line_num}.end")
+        prefix = last_word(last_line)
+        suggestions = prefix_dict[prefix]
+        if not suggestions:
+            suggestion_box.withdraw()
+            return
+
+        for widget in suggestion_box.winfo_children():
+            widget.destroy()
+        i = 1
+        for suggestion in suggestions:
+            if i == 10:
+                suggestion = "0. " + suggestion
+            else:
+                suggestion = f"{i}. {suggestion}"
+            label = tk.Label(suggestion_box, text=suggestion, anchor="w")
+            label.pack(fill=tk.BOTH)
+            i += 1
+
+        # Position suggestion box below cursor
         cursor_index = text_field.index(tk.INSERT)
         x, y, _, _ = text_field.bbox(cursor_index)
 
-        # Convert the text box coordinates to root window coordinates
         x_root = x + text_field.winfo_rootx()
         y_root = y + text_field.winfo_rooty()
 
-        # Update suggestions
-        suggestions = ["1. Lenovo", "2. HP", "3. Dell", "4. Apple", "5. Asus"]
-        for widget in suggestion_box.winfo_children():
-            widget.destroy()
-        for suggestion in suggestions:
-            label = tk.Label(suggestion_box, text=suggestion, anchor="w")
-            label.pack(fill=tk.BOTH)
-
         suggestion_box.wm_geometry(f"+{x_root}+{y_root + 20}")
+
+        # Make sure suggestion box is visible
         suggestion_box.deiconify()
 
 
-def split_alnum_words(s):
+def last_word(s):
     # Split the string by any non-alphanumeric character
     words = re.split(r"\W+", s)
 
     # Remove empty strings from the result
-    return [word for word in words if word]
+    words = [word for word in words if word]
+
+    # Last word
+    return words[-1]
 
 
 # Create the main window
