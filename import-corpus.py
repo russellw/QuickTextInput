@@ -36,7 +36,7 @@ cursor = conn.cursor()
 for word, count in word_counts.items():
     cursor.execute(
         """
-    INSERT INTO words (word, count) 
+    INSERT INTO words (word, count)
     VALUES (?, 1)
     ON CONFLICT(word) DO UPDATE SET count = count + 1
     """,
