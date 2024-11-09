@@ -106,6 +106,8 @@ def on_key_release(event):
         pick(9)
     elif 49 <= k <= 57:
         pick(k - 49)
+    elif 112 <= k <= 121:
+        pick(k - 102)
 
     # Suggestions never just hang around
     # they are either updated or cleared
