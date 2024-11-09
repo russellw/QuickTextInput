@@ -32,13 +32,14 @@ with open(file_path, "r", encoding="utf-8") as f:
             word_counts[word] += 1
 print(len(word_counts))
 
-cursor = conn.cursor()
-for word, count in word_counts.items():
-    cursor.execute(
-        """
-        INSERT INTO words (word, count)
-        VALUES (?, 1)
-        ON CONFLICT(word) DO UPDATE SET count = count + 1
-        """,
-        (word,),
-    )
+with conn:
+    cursor = conn.cursor()
+    for word, count in word_counts.items():
+        cursor.execute(
+            """
+            INSERT INTO words (word, count)
+            VALUES (?, 1)
+            ON CONFLICT(word) DO UPDATE SET count = count + 1
+            """,
+            (word,),
+        )
