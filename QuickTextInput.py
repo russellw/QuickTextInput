@@ -84,55 +84,25 @@ def last_word(s):
 
 
 def on_key_release(event):
-    global suggestions
-
     # Check if cursor is at the end
     end_index = text_widget.index("end-1c")
     if text_widget.index("insert") != end_index:
-        suggestion_box.withdraw()
+        suggest()
         return
 
     c = event.char
 
     # Only letters trigger suggestions
     if c.isalpha():
-        # Update suggestions
         last_line_num = int(end_index.split(".")[0])
         last_line = text_widget.get(f"{last_line_num}.0", f"{last_line_num}.end")
         prefix = last_word(last_line)
-        suggestions = prefix_dict[prefix]
-        if not suggestions:
-            suggestion_box.withdraw()
-            return
-
-        for widget in suggestion_box.winfo_children():
-            widget.destroy()
-        i = 1
-        for suggestion in suggestions:
-            if i == 10:
-                suggestion = "0. " + suggestion
-            else:
-                suggestion = f"{i}. {suggestion}"
-            label = tk.Label(suggestion_box, text=suggestion, anchor="w")
-            label.pack(fill=tk.BOTH)
-            i += 1
-
-        # Position suggestion box below cursor
-        cursor_index = text_widget.index(tk.INSERT)
-        x, y, _, _ = text_widget.bbox(cursor_index)
-
-        x_root = x + text_widget.winfo_rootx()
-        y_root = y + text_widget.winfo_rooty()
-
-        suggestion_box.wm_geometry(f"+{x_root}+{y_root + 20}")
-
-        # Make sure suggestion box is visible
-        suggestion_box.deiconify()
+        suggest( prefix_dict[prefix])
         return
 
-    # The suggestion box never just hangs around
-    # It is either updated or hidden
-    suggestion_box.withdraw()
+    # suggestions never just hang around
+    #they are either updated or cleared
+    suggest()
 
     # Space after punctuation
     # The disjunction is because the empty string is considered to be in all strings
@@ -148,6 +118,14 @@ def on_key_release(event):
     if 49 <= k <= 57:
         pick(k - 49)
         return
+
+def suggest(suggestions1=[]):
+    global suggestions
+    suggestions=suggestions1
+    for i in range(len(suggestions)):
+        suggestion_cells[i].config(text=suggestions[i])
+    for i in range(len(suggestions),20):
+        suggestion_cells[i].config(text='')
 
 
 def pick(i):
@@ -215,15 +193,7 @@ create_cell_row(1, "")
 # Second row corresponds to first suggestions
 suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
 
-# Example function to update a read-only label
-def update_read_only_label(cell_id, text):
-    if cell_id in read_only_labels:
-        read_only_labels[cell_id].config(text=text)
 
-
-# Example updates (programmatically change the text)
-update_read_only_label("F1", "Example F1 Text")
-update_read_only_label("1", "Example 1 Text")
 
 
 # Suggestions
