@@ -97,11 +97,11 @@ def on_key_release(event):
         last_line_num = int(end_index.split(".")[0])
         last_line = text_widget.get(f"{last_line_num}.0", f"{last_line_num}.end")
         prefix = last_word(last_line)
-        suggest( prefix_dict[prefix])
+        suggest(prefix_dict[prefix])
         return
 
-    # suggestions never just hang around
-    #they are either updated or cleared
+    # Suggestions never just hang around
+    # they are either updated or cleared
     suggest()
 
     # Space after punctuation
@@ -119,14 +119,6 @@ def on_key_release(event):
         pick(k - 49)
         return
 
-def suggest(suggestions1=[]):
-    global suggestions
-    suggestions=suggestions1
-    for i in range(len(suggestions)):
-        suggestion_cells[i].config(text=suggestions[i])
-    for i in range(len(suggestions),20):
-        suggestion_cells[i].config(text='')
-
 
 def pick(i):
     if len(suggestions) <= i:
@@ -138,6 +130,15 @@ def pick(i):
     start_index = f"{end_index} - {n} chars"
     text_widget.delete(start_index, end_index)
     text_widget.insert("insert", suggestions[i] + " ")
+
+
+def suggest(suggestions1=[]):
+    global suggestions
+    suggestions = suggestions1
+    for i in range(len(suggestions)):
+        suggestion_cells[i].config(text=suggestions[i])
+    for i in range(len(suggestions), 20):
+        suggestion_cells[i].config(text="")
 
 
 # Initialize the main window and maximize it
@@ -192,8 +193,6 @@ create_cell_row(1, "")
 
 # Second row corresponds to first suggestions
 suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
-
-
 
 
 # Suggestions
