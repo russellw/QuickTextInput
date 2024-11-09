@@ -30,5 +30,15 @@ with open(file_path, "r", encoding="utf-8") as f:
             if lo in lower_words:
                 word = lo
             word_counts[word] += 1
+print(len(word_counts))
 
-print(sorted(word_counts.keys()))
+cursor = conn.cursor()
+for word, count in word_counts.items():
+    cursor.execute(
+        """
+    INSERT INTO words (word, count) 
+    VALUES (?, 1)
+    ON CONFLICT(word) DO UPDATE SET count = count + 1
+    """,
+        (word,),
+    )
