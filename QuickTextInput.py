@@ -122,7 +122,7 @@ def suggest(suggestions1=[]):
 # Initialize the main window and maximize it
 root = tk.Tk()
 root.state("zoomed")  # Maximize window
-root.title("Text Editor with Read-Only Info Cells")
+root.title("QuickTextInput")
 
 # Configure the main window's layout
 root.grid_rowconfigure(0, weight=1)  # Text widget should expand
