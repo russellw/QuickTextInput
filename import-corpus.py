@@ -31,5 +31,4 @@ with open(file_path, "r", encoding="utf-8") as f:
                 word = lo
             word_counts[word] += 1
 
-word_counts = dict(word_counts)
 print(sorted(word_counts.keys()))
