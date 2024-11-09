@@ -100,6 +100,13 @@ def on_key_release(event):
         suggest(prefix_dict[prefix])
         return
 
+    # Digit picks suggestion
+    k = event.keycode
+    if k == 48:
+        pick(9)
+    elif 49 <= k <= 57:
+        pick(k - 49)
+
     # Suggestions never just hang around
     # they are either updated or cleared
     suggest()
@@ -110,26 +117,16 @@ def on_key_release(event):
         text_widget.insert("insert", " ")
         return
 
-    # Digit picks suggestion
-    k = event.keycode
-    if k == 48:
-        pick(9)
-        return
-    if 49 <= k <= 57:
-        pick(k - 49)
-        return
-
 
 def pick(i):
-    if len(suggestions) <= i:
-        return
-    end_index = text_widget.index("end-1c")
-    last_line_num = int(end_index.split(".")[0])
-    last_line = text_widget.get(f"{last_line_num}.0", f"{last_line_num}.end")
-    n = len(last_word(last_line))
-    start_index = f"{end_index} - {n} chars"
-    text_widget.delete(start_index, end_index)
-    text_widget.insert("insert", suggestions[i] + " ")
+    if i < len(suggestions):
+        end_index = text_widget.index("end-1c")
+        last_line_num = int(end_index.split(".")[0])
+        last_line = text_widget.get(f"{last_line_num}.0", f"{last_line_num}.end")
+        n = len(last_word(last_line))
+        start_index = f"{end_index} - {n} chars"
+        text_widget.delete(start_index, end_index)
+        text_widget.insert("insert", suggestions[i] + " ")
 
 
 def suggest(suggestions1=[]):
