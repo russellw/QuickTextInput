@@ -26,6 +26,8 @@ with open(file_path, "r", encoding="utf-8") as f:
         for word in re.findall(r"\b\w+\b", line):
             if not word.isalpha():
                 continue
+            if len(word) == 1 and word.islower():
+                continue
             lo = word.lower()
             if lo in lower_words:
                 word = lo

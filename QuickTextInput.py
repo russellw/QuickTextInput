@@ -1,6 +1,7 @@
 import re
 import tkinter as tk
 from collections import defaultdict
+from tkinter import font
 
 import common
 
@@ -123,6 +124,12 @@ def suggest(suggestions1=[]):
 root = tk.Tk()
 root.state("zoomed")  # Maximize window
 root.title("QuickTextInput")
+
+# Define a base font
+default_font = font.nametofont("TkDefaultFont")
+
+# Update the base font size
+default_font.configure(size=16)
 
 # Configure the main window's layout
 root.grid_rowconfigure(0, weight=1)  # Text widget should expand
