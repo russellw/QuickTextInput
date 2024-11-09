@@ -1,5 +1,4 @@
 import re
-import sqlite3
 import tkinter as tk
 from collections import defaultdict
 
