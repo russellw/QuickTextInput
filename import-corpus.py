@@ -59,4 +59,4 @@ def count_words(file_path):
 
 
 word_counts = count_words(file_path)
-print(word_counts)
+print(sorted(word_counts.keys()))
