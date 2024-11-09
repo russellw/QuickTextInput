@@ -137,8 +137,11 @@ root.grid_rowconfigure(1, weight=0)  # First row of cells
 root.grid_rowconfigure(2, weight=0)  # Second row of cells
 root.grid_columnconfigure(0, weight=1)
 
+# Create a custom font for the Text widget
+text_font = font.Font(family="Consolas", size=16)
+
 # Create the main text widget that occupies most of the screen
-text_widget = tk.Text(root)
+text_widget = tk.Text(root, font=text_font)
 text_widget.grid(row=0, column=0, sticky="nsew")
 text_widget.focus_set()
 
