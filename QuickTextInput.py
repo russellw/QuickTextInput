@@ -55,8 +55,7 @@ def copy_to_clipboard():
 
 
 def hide_tooltip(event):
-    # TODO: simplify?
-    if hasattr(event.widget, "tooltip"):
+    if event.widget.tooltip:
         event.widget.tooltip.destroy()
 
 
