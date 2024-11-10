@@ -2,7 +2,7 @@ import re
 import tkinter as tk
 from collections import defaultdict
 from tkinter import font
-
+from PIL import  ImageTk
 import common
 
 conn = common.init_db()
@@ -191,9 +191,10 @@ cut_button = tk.Button(
 )
 cut_button.pack(side="left", padx=2, pady=2)
 
+copy_icon = ImageTk.PhotoImage(file="copy.png")
 copy_button = tk.Button(
     toolbar_frame,
-    text="Copy",
+    image=copy_icon,
     command=lambda: root.focus_get().event_generate("<<Copy>>"),
 )
 copy_button.pack(side="left", padx=2, pady=2)
