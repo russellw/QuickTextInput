@@ -2,7 +2,9 @@ import re
 import tkinter as tk
 from collections import defaultdict
 from tkinter import font
-from PIL import  ImageTk
+
+from PIL import ImageTk
+
 import common
 
 conn = common.init_db()
