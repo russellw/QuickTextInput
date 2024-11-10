@@ -119,8 +119,16 @@ def pick(i):
 
 
 def show_tooltip(event, text):
+    # Calculate the widget's position relative to the root window
+    widget_x = event.widget.winfo_rootx() - root.winfo_rootx()
+    widget_y = event.widget.winfo_rooty() - root.winfo_rooty()
+
+    # Calculate tooltip position based on widget's position in root and mouse event offset
+    x = widget_x + event.x + 10  # Offset to position it slightly away from the mouse
+    y = widget_y + event.y + 10
+
     tooltip = tk.Label(root, text=text, background="yellow", relief="solid")
-    tooltip.place(x=event.x_root, y=event.y_root)
+    tooltip.place(x=x, y=y)
     event.widget.tooltip = tooltip
 
 
