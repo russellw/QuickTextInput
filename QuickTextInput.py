@@ -132,22 +132,90 @@ default_font = font.nametofont("TkDefaultFont")
 default_font.configure(size=16)
 
 # Configure the main window's layout
-root.grid_rowconfigure(0, weight=1)  # Text widget should expand
-root.grid_rowconfigure(1, weight=0)  # First row of cells
-root.grid_rowconfigure(2, weight=0)  # Second row of cells
+root.grid_rowconfigure(0, weight=0)  # Toolbar row
+root.grid_rowconfigure(1, weight=1)  # Text widget should expand
+root.grid_rowconfigure(2, weight=0)  # First row of cells
+root.grid_rowconfigure(3, weight=0)  # Second row of cells
 root.grid_columnconfigure(0, weight=1)
+
+# Create the menu bar
+menu_bar = tk.Menu(root)
+
+# Add "File" menu
+file_menu = tk.Menu(menu_bar, tearoff=0)
+file_menu.add_command(label="New", command=lambda: text_widget.delete("1.0", tk.END))
+file_menu.add_command(label="Open", command=lambda: print("Open file"))
+file_menu.add_command(label="Save", command=lambda: print("Save file"))
+file_menu.add_separator()
+file_menu.add_command(label="Exit", command=root.quit)
+menu_bar.add_cascade(label="File", menu=file_menu)
+
+# Add "Edit" menu
+edit_menu = tk.Menu(menu_bar, tearoff=0)
+edit_menu.add_command(
+    label="Cut", command=lambda: root.focus_get().event_generate("<<Cut>>")
+)
+edit_menu.add_command(
+    label="Copy", command=lambda: root.focus_get().event_generate("<<Copy>>")
+)
+edit_menu.add_command(
+    label="Paste", command=lambda: root.focus_get().event_generate("<<Paste>>")
+)
+menu_bar.add_cascade(label="Edit", menu=edit_menu)
+
+# Configure the menu bar in the root window
+root.config(menu=menu_bar)
+
+# Create a toolbar frame
+toolbar_frame = tk.Frame(root, bd=1, relief="raised")
+toolbar_frame.grid(row=0, column=0, sticky="ew")
+
+# Add buttons to the toolbar
+new_button = tk.Button(
+    toolbar_frame, text="New", command=lambda: text_widget.delete("1.0", tk.END)
+)
+new_button.pack(side="left", padx=2, pady=2)
+
+save_button = tk.Button(toolbar_frame, text="Save", command=lambda: print("Save file"))
+save_button.pack(side="left", padx=2, pady=2)
+
+# Separator
+separator = tk.Label(toolbar_frame, text="|")
+separator.pack(side="left", padx=5)
+
+# Cut, Copy, Paste buttons
+cut_button = tk.Button(
+    toolbar_frame,
+    text="Cut",
+    command=lambda: root.focus_get().event_generate("<<Cut>>"),
+)
+cut_button.pack(side="left", padx=2, pady=2)
+
+copy_button = tk.Button(
+    toolbar_frame,
+    text="Copy",
+    command=lambda: root.focus_get().event_generate("<<Copy>>"),
+)
+copy_button.pack(side="left", padx=2, pady=2)
+
+paste_button = tk.Button(
+    toolbar_frame,
+    text="Paste",
+    command=lambda: root.focus_get().event_generate("<<Paste>>"),
+)
+paste_button.pack(side="left", padx=2, pady=2)
 
 # Create a custom font for the Text widget
 text_font = font.Font(family="Consolas", size=16)
 
 # Create the main text widget that occupies most of the screen
 text_widget = tk.Text(root, font=text_font)
-text_widget.grid(row=0, column=0, sticky="nsew")
+text_widget.grid(row=1, column=0, sticky="nsew")
 text_widget.focus_set()
 
 # Frame to hold the cells below the text widget
 cell_frame = tk.Frame(root)
-cell_frame.grid(row=1, column=0, sticky="ew", rowspan=2)
+cell_frame.grid(row=2, column=0, sticky="ew", rowspan=2)
 
 # Set equal weight for each column in the cell frame to ensure uniform widths
 for col in range(20):
