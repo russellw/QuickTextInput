@@ -193,14 +193,16 @@ toolbar_frame.grid(row=0, column=0, sticky="ew")
 
 
 def create_button(image_name, tooltip_text, command):
-    image = ImageTk.PhotoImage(file=image_name + ".png")
+    image = ImageTk.PhotoImage(file=f'baseline_{image_name}_black_24.png')
     button = tk.Button(toolbar_frame, image=image, command=command, relief="flat")
     button.image = image  # Keep a reference to the image
     button.bind("<Enter>", lambda e: show_tooltip(e, tooltip_text))
     button.bind("<Leave>", hide_tooltip)
     button.pack(side=tk.LEFT)
     return button
-
+def separator():
+    separator = tk.Label(toolbar_frame, text="|")
+    separator.pack(side="left", padx=5)
 
 # Add buttons to the toolbar
 new_button = tk.Button(
@@ -211,9 +213,6 @@ new_button.pack(side="left", padx=2, pady=2)
 save_button = tk.Button(toolbar_frame, text="Save", command=lambda: print("Save file"))
 save_button.pack(side="left", padx=2, pady=2)
 
-# Separator
-separator = tk.Label(toolbar_frame, text="|")
-separator.pack(side="left", padx=5)
 
 # Cut, Copy, Paste buttons
 cut_button = tk.Button(
@@ -223,23 +222,10 @@ cut_button = tk.Button(
 )
 cut_button.pack(side="left", padx=2, pady=2)
 
-create_button("copy", "Copy", lambda: root.focus_get().event_generate("<<Copy>>"))
-"""
-copy_icon = ImageTk.PhotoImage(file="copy.png")
-copy_button = tk.Button(
-    toolbar_frame,
-    image=copy_icon,
-    command=lambda: root.focus_get().event_generate("<<Copy>>"),
-)
-copy_button.pack(side="left", padx=2, pady=2)
-"""
-
-paste_button = tk.Button(
-    toolbar_frame,
-    text="Paste",
-    command=lambda: root.focus_get().event_generate("<<Paste>>"),
-)
-paste_button.pack(side="left", padx=2, pady=2)
+create_button("content_cut", "Cut", lambda: root.focus_get().event_generate("<<Cut>>"))
+create_button("content_copy", "Copy", lambda: root.focus_get().event_generate("<<Copy>>"))
+create_button("content_paste", "Paste", lambda: root.focus_get().event_generate("<<Paste>>"))
+separator()
 
 # Create a custom font for the Text widget
 text_font = font.Font(family="Consolas", size=16)
