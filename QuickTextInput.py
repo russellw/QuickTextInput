@@ -184,6 +184,10 @@ edit_menu.add_command(
 )
 menu_bar.add_cascade(label="Edit", menu=edit_menu)
 
+# Add "Help" menu
+help_menu = tk.Menu(menu_bar, tearoff=0)
+menu_bar.add_cascade(label="Help", menu=help_menu)
+
 # Configure the menu bar in the root window
 root.config(menu=menu_bar)
 
