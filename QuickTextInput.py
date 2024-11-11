@@ -239,6 +239,9 @@ text_widget = tk.Text(root, font=text_font)
 text_widget.grid(row=1, column=0, sticky="nsew")
 text_widget.focus_set()
 
+# Stop the cursor from blinking
+text_widget.config(insertontime=0, insertofftime=0)
+
 # Frame to hold the cells below the text widget
 cell_frame = tk.Frame(root)
 cell_frame.grid(row=2, column=0, sticky="ew", rowspan=2)
