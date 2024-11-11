@@ -40,8 +40,8 @@ with conn:
         cursor.execute(
             """
             INSERT INTO words (word, count)
-            VALUES (?, 1)
-            ON CONFLICT(word) DO UPDATE SET count = count + 1
+            VALUES (?, ?)
+            ON CONFLICT(word) DO UPDATE SET count = count + ?
             """,
-            (word,),
+            (word, count, count),
         )
