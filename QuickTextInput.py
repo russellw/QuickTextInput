@@ -31,7 +31,7 @@ for prefix in prefix_dict:
     prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
 
 
-def copy_to_clipboard():
+def done():
     # Get the text from the text field
     text = text_widget.get("1.0", tk.END)
 
@@ -192,6 +192,10 @@ toolbar_frame = tk.Frame(root, bd=1, relief="raised")
 toolbar_frame.grid(row=0, column=0, sticky="ew")
 
 
+def bold():
+    pass
+
+
 def create_button(image_name, tooltip_text, command):
     image = ImageTk.PhotoImage(file=f"baseline_{image_name}_black_24.png")
     button = tk.Button(toolbar_frame, image=image, command=command, relief="flat")
@@ -208,23 +212,6 @@ def separator():
 
 
 # Add buttons to the toolbar
-new_button = tk.Button(
-    toolbar_frame, text="New", command=lambda: text_widget.delete("1.0", tk.END)
-)
-new_button.pack(side="left", padx=2, pady=2)
-
-save_button = tk.Button(toolbar_frame, text="Save", command=lambda: print("Save file"))
-save_button.pack(side="left", padx=2, pady=2)
-
-
-# Cut, Copy, Paste buttons
-cut_button = tk.Button(
-    toolbar_frame,
-    text="Cut",
-    command=lambda: root.focus_get().event_generate("<<Cut>>"),
-)
-cut_button.pack(side="left", padx=2, pady=2)
-
 create_button("content_cut", "Cut", lambda: root.focus_get().event_generate("<<Cut>>"))
 create_button(
     "content_copy", "Copy", lambda: root.focus_get().event_generate("<<Copy>>")
@@ -233,6 +220,16 @@ create_button(
     "content_paste", "Paste", lambda: root.focus_get().event_generate("<<Paste>>")
 )
 separator()
+create_button("undo", "Undo", lambda: root.focus_get().event_generate("<<Undo>>"))
+create_button("redo", "Redo", lambda: root.focus_get().event_generate("<<Redo>>"))
+separator()
+create_button("format_bold", "Bold", bold)
+create_button("format_italic", "Italic", bold)
+create_button("format_strikethrough", "Strikethrough", bold)
+separator()
+create_button("insert_link", "Insert link", bold)
+separator()
+create_button("done", "Cut all to clipboard", done)
 
 # Create a custom font for the Text widget
 text_font = font.Font(family="Consolas", size=16)
@@ -279,23 +276,12 @@ create_cell_row(1, "")
 # Second row corresponds to first suggestions
 suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
 
-
 # Suggestions
 suggestions = []
 
-"""
-
-# Create the copy button with internal padding and align it to the right side
-copy_button = tk.Button(
-    root, text="Copy to Clipboard (F12)", command=copy_to_clipboard, padx=10, pady=10
-)
-copy_button.pack(padx=5, pady=5, anchor="e")
-"""
-
-# Bind events
+# Bind key events
+root.bind("<F12>", lambda event: done())
 text_widget.bind("<KeyRelease>", on_key_release)
-
-# Root.bind("<F12>", lambda event: copy_to_clipboard())
 
 # Run the Tkinter event loop
 root.mainloop()
