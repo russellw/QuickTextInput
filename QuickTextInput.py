@@ -31,6 +31,10 @@ for prefix in prefix_dict:
     prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
 
 
+def bold():
+    pass
+
+
 def done():
     # Get the text from the text field
     text = text_widget.get("1.0", tk.END)
@@ -196,10 +200,6 @@ toolbar_frame = tk.Frame(root, bd=1, relief="raised")
 toolbar_frame.grid(row=0, column=0, sticky="ew")
 
 
-def bold():
-    pass
-
-
 def create_button(image_name, tooltip_text, command):
     image = ImageTk.PhotoImage(file=f"baseline_{image_name}_black_24.png")
     button = tk.Button(toolbar_frame, image=image, command=command, relief="flat")
@@ -233,7 +233,7 @@ create_button("format_strikethrough", "Strikethrough", bold)
 separator()
 create_button("insert_link", "Insert link", bold)
 separator()
-create_button("done", "Cut all to clipboard", done)
+create_button("done", "Move finished text to clipboard", done)
 
 # Create a custom font for the Text widget
 text_font = font.Font(family="Consolas", size=14)
