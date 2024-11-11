@@ -48,14 +48,24 @@ def done():
     # Update the clipboard
     root.update()
 
-    cursor = conn.cursor()
-    for word in split_alnum_words(text):
-        if word in words:
-            words[word] += 1
-            cursor.execute("UPDATE words SET count = count + 1 WHERE word = ?", (word,))
-        else:
-            words[word] = 1
-            cursor.execute("INSERT INTO words (word, count) VALUES (?, 1)", (word,))
+    word_counts = defaultdict(int)
+    for word in re.findall(r"\b\w+\b", text):
+        if not word.isalpha():
+            continue
+        if len(word) == 1 and word.islower():
+            continue
+        word_counts[word] += 1
+    with conn:
+        cursor = conn.cursor()
+        for word, count in word_counts.items():
+            cursor.execute(
+                """
+                INSERT INTO words (word, count)
+                VALUES (?, ?)
+                ON CONFLICT(word) DO UPDATE SET count = count + ?
+                """,
+                (word, count, count),
+            )
 
 
 def hide_tooltip(event):

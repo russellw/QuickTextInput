@@ -1,6 +1,6 @@
 import re
 import sys
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 import common
 
