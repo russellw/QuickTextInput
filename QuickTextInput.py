@@ -150,7 +150,7 @@ root.title("QuickTextInput")
 default_font = font.nametofont("TkDefaultFont")
 
 # Update the base font size
-default_font.configure(size=16)
+default_font.configure(size=14)
 
 # Configure the main window's layout
 root.grid_rowconfigure(0, weight=0)  # Toolbar row
@@ -232,7 +232,7 @@ separator()
 create_button("done", "Cut all to clipboard", done)
 
 # Create a custom font for the Text widget
-text_font = font.Font(family="Consolas", size=16)
+text_font = font.Font(family="Consolas", size=14)
 
 # Create the main text widget that occupies most of the screen
 text_widget = tk.Text(root, font=text_font)
