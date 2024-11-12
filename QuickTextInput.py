@@ -34,7 +34,7 @@ for prefix in prefix_dict:
 def about():
     messagebox.showinfo(
         "About QuickTextInput",
-        "Efficient keyboard text input\nDesigned and implemented by Russell Wallace\n\nVersion 0.1",
+        "Efficient keyboard text input\n\nDesigned and implemented\nby Russell Wallace\n\nVersion 0.1",
     )
 
 
@@ -235,29 +235,35 @@ menu_bar = tk.Menu(root)
 
 # Add "File" menu
 file_menu = tk.Menu(menu_bar, tearoff=0)
-file_menu.add_command(label="New", command=lambda: text_widget.delete("1.0", tk.END))
-file_menu.add_command(label="Open", command=lambda: print("Open file"))
-file_menu.add_command(label="Save", command=lambda: print("Save file"))
+file_menu.add_command(
+    label="New", underline=0, command=lambda: text_widget.delete("1.0", tk.END)
+)
+file_menu.add_command(label="Open", underline=0, command=lambda: print("Open file"))
+file_menu.add_command(label="Save", underline=0, command=lambda: print("Save file"))
 file_menu.add_separator()
-file_menu.add_command(label="Exit", command=root.quit)
+file_menu.add_command(label="Exit", underline=1, command=root.quit)
 menu_bar.add_cascade(label="File", menu=file_menu)
 
 # Add "Edit" menu
 edit_menu = tk.Menu(menu_bar, tearoff=0)
 edit_menu.add_command(
-    label="Cut", command=lambda: root.focus_get().event_generate("<<Cut>>")
+    label="Cut", underline=0, command=lambda: root.focus_get().event_generate("<<Cut>>")
 )
 edit_menu.add_command(
-    label="Copy", command=lambda: root.focus_get().event_generate("<<Copy>>")
+    label="Copy",
+    underline=3,
+    command=lambda: root.focus_get().event_generate("<<Copy>>"),
 )
 edit_menu.add_command(
-    label="Paste", command=lambda: root.focus_get().event_generate("<<Paste>>")
+    label="Paste",
+    underline=0,
+    command=lambda: root.focus_get().event_generate("<<Paste>>"),
 )
 menu_bar.add_cascade(label="Edit", menu=edit_menu)
 
 # Add "Help" menu
 help_menu = tk.Menu(menu_bar, tearoff=0)
-help_menu.add_command(label="About", command=about, underline=0)
+help_menu.add_command(label="About", underline=0, command=about)
 menu_bar.add_cascade(label="Help", menu=help_menu)
 
 # Configure the menu bar in the root window
