@@ -313,7 +313,7 @@ create_button("done", "Move finished text to clipboard", done)
 text_font = font.Font(family="Consolas", size=14)
 
 # Create the main text widget that occupies most of the screen
-text_widget = tk.Text(root, font=text_font)
+text_widget = tk.Text(root, font=text_font, undo=True)
 text_widget.grid(row=1, column=0, sticky="nsew")
 text_widget.focus_set()
 
