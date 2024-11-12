@@ -35,9 +35,53 @@ def bold():
     pass
 
 
+def correct_grammar(text):
+    # Split text into lines
+    lines = text.splitlines()
+
+    # Process each line through the correct_line helper function
+    corrected_lines = [correct_line(line) for line in lines]
+
+    # Join the corrected lines back into a single text string
+    corrected_text = "\n".join(corrected_lines).strip()
+
+    # Add a period at the end if there's no terminal punctuation and no URL at the end
+    if not re.search(r"[.?!]$", corrected_text) and not re.search(
+        r"\bhttps?://\S*$", corrected_text
+    ):
+        corrected_text += "."
+
+    return corrected_text
+
+
+def correct_line(line):
+    # Strip trailing spaces
+    line = line.rstrip()
+
+    # Check if the line contains a URL. If so, return the line unchanged.
+    if re.search(r"\bhttps?://", line):
+        return line
+
+    # Step 1: Ensure punctuation marks are followed by a space
+    line = re.sub(r"([,;:!?])(\S)", r"\1 \2", line)
+
+    # Step 2: Remove extra spaces between words
+    line = re.sub(r"\s{2,}", " ", line)
+
+    # Step 3: Capitalize the first letter of each sentence
+    line = re.sub(
+        r"(^|\.\s*)([a-z])", lambda match: match.group(1) + match.group(2).upper(), line
+    )
+
+    return line
+
+
 def done():
     # Get the text from the text field
     text = text_widget.get("1.0", tk.END)
+
+    # Fix up punctuation etc
+    text = correct_grammar(text)
 
     # Clear the clipboard
     root.clipboard_clear()
