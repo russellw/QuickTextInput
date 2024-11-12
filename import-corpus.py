@@ -30,10 +30,8 @@ else:
     documents_dir = os.path.join(user_profile, "Documents")
     db_path = os.path.join(documents_dir, "QuickTextInput.db")
 
-
 # Path to the text file to import
 file_path = args.text_file
-
 
 lower_words = set()
 with open("words.txt", "r", encoding="utf-8") as f:
@@ -45,10 +43,8 @@ with open("words.txt", "r", encoding="utf-8") as f:
 # Connect to database
 conn = common.init_db(db_path)
 
-
 # Dictionary to keep counts of each word, separate for lowercase and title case.
 word_counts = defaultdict(int)
-
 
 # Open and read the file line by line
 with open(file_path, "r", encoding="utf-8") as f:
