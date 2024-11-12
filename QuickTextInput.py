@@ -298,7 +298,7 @@ def create_button(image_name, tooltip_text, command):
 
 
 def separator():
-    separator = tk.Label(toolbar_frame, text="|")
+    separator = tk.Label(toolbar_frame, text="|", fg="light gray")
     separator.pack(side="left", padx=5)
 
 
