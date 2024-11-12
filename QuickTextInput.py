@@ -240,6 +240,8 @@ menu.add_command(
 )
 menu.add_command(label="Open", underline=0, command=lambda: print("Open file"))
 menu.add_command(label="Save", underline=0, command=lambda: print("Save file"))
+menu.add_command(label="Save As", underline=5, command=lambda: print("Save file"))
+menu.add_command(label="Print", underline=0, command=lambda: print("Print file"))
 menu.add_separator()
 menu.add_command(label="Exit", underline=1, command=root.quit)
 menu_bar.add_cascade(label="File", menu=menu)
@@ -301,6 +303,11 @@ def separator():
 
 
 # Add buttons to the toolbar
+create_button("add", "New", lambda: text_widget.delete("1.0", tk.END))
+create_button("folder_open", "Open", lambda: print())
+create_button("save", "Save", lambda: print())
+create_button("print", "Print", lambda: print())
+separator()
 create_button("content_cut", "Cut", lambda: root.focus_get().event_generate("<<Cut>>"))
 create_button(
     "content_copy", "Copy", lambda: root.focus_get().event_generate("<<Copy>>")
