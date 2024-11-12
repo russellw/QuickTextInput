@@ -92,6 +92,10 @@ def done():
     # Update the clipboard
     root.update()
 
+    # Clear
+    text_widget.delete("1.0", tk.END)
+
+    # Update the database
     word_counts = defaultdict(int)
     for word in re.findall(r"\b\w+\b", text):
         if not word.isalpha():
