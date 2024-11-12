@@ -1,7 +1,7 @@
 import re
 import tkinter as tk
 from collections import defaultdict
-from tkinter import font
+from tkinter import font, messagebox
 
 from PIL import ImageTk
 
@@ -29,6 +29,13 @@ for r in rs:
 # Limit each prefix entry to the 20 most frequent words
 for prefix in prefix_dict:
     prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
+
+
+def about():
+    messagebox.showinfo(
+        "About QuickTextInput",
+        "Efficient keyboard text input\nDesigned and implemented by Russell Wallace\n\nVersion 0.1",
+    )
 
 
 def bold():
@@ -128,8 +135,10 @@ def last_word(s):
     # Remove empty strings from the result
     words = [word for word in words if word]
 
-    # Last word
-    return words[-1]
+    # Last word, if any
+    if words:
+        return words[-1]
+    return ""
 
 
 def on_key_release(event):
@@ -248,6 +257,7 @@ menu_bar.add_cascade(label="Edit", menu=edit_menu)
 
 # Add "Help" menu
 help_menu = tk.Menu(menu_bar, tearoff=0)
+help_menu.add_command(label="About", command=about)
 menu_bar.add_cascade(label="Help", menu=help_menu)
 
 # Configure the menu bar in the root window
