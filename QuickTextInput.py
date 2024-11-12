@@ -198,7 +198,7 @@ def show_tooltip(event, text):
     x = widget_x + event.x + 10  # Offset to position it slightly away from the mouse
     y = widget_y + event.y + 10
 
-    tooltip = tk.Label(root, text=text, background="yellow", relief="solid")
+    tooltip = tk.Label(root, text=text, background="#FFFFE0", relief="solid")
     tooltip.place(x=x, y=y)
     event.widget.tooltip = tooltip
 
