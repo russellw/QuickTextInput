@@ -1,3 +1,5 @@
+import argparse
+import os
 import re
 import tkinter as tk
 from collections import defaultdict
@@ -7,7 +9,28 @@ from PIL import ImageTk
 
 import common
 
-conn = common.init_db()
+# Set up argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--db",
+    type=str,
+    default=None,
+    help="Path to the SQLite database file (default: ~/Documents/QuickTextInput.db)",
+)
+
+args = parser.parse_args()
+
+# Determine the database path
+if args.db:
+    db_path = args.db
+else:
+    # Default file path
+    user_profile = os.environ["USERPROFILE"]
+    documents_dir = os.path.join(user_profile, "Documents")
+    db_path = os.path.join(documents_dir, "QuickTextInput.db")
+
+# Connect to database
+conn = common.init_db(db_path)
 
 # Read word frequencies
 word_freq = {}

@@ -1,13 +1,7 @@
-import os
 import sqlite3
 
 
-def init_db():
-    # File path
-    user_profile = os.environ["USERPROFILE"]
-    documents_dir = os.path.join(user_profile, "Documents")
-    db_path = os.path.join(documents_dir, "QuickTextInput.db")
-
+def init_db(db_path):
     # Connect to database
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys=ON")
