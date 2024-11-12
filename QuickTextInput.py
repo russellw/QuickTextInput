@@ -247,6 +247,17 @@ menu_bar.add_cascade(label="File", menu=menu)
 # Add "Edit" menu
 menu = tk.Menu(menu_bar, tearoff=0)
 menu.add_command(
+    label="Undo",
+    underline=0,
+    command=lambda: root.focus_get().event_generate("<<Undo>>"),
+)
+menu.add_command(
+    label="Redo",
+    underline=0,
+    command=lambda: root.focus_get().event_generate("<<Redo>>"),
+)
+menu.add_separator()
+menu.add_command(
     label="Cut", underline=0, command=lambda: root.focus_get().event_generate("<<Cut>>")
 )
 menu.add_command(
