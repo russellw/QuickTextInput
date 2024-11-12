@@ -234,37 +234,37 @@ root.grid_columnconfigure(0, weight=1)
 menu_bar = tk.Menu(root)
 
 # Add "File" menu
-file_menu = tk.Menu(menu_bar, tearoff=0)
-file_menu.add_command(
+menu = tk.Menu(menu_bar, tearoff=0)
+menu.add_command(
     label="New", underline=0, command=lambda: text_widget.delete("1.0", tk.END)
 )
-file_menu.add_command(label="Open", underline=0, command=lambda: print("Open file"))
-file_menu.add_command(label="Save", underline=0, command=lambda: print("Save file"))
-file_menu.add_separator()
-file_menu.add_command(label="Exit", underline=1, command=root.quit)
-menu_bar.add_cascade(label="File", menu=file_menu)
+menu.add_command(label="Open", underline=0, command=lambda: print("Open file"))
+menu.add_command(label="Save", underline=0, command=lambda: print("Save file"))
+menu.add_separator()
+menu.add_command(label="Exit", underline=1, command=root.quit)
+menu_bar.add_cascade(label="File", menu=menu)
 
 # Add "Edit" menu
-edit_menu = tk.Menu(menu_bar, tearoff=0)
-edit_menu.add_command(
+menu = tk.Menu(menu_bar, tearoff=0)
+menu.add_command(
     label="Cut", underline=0, command=lambda: root.focus_get().event_generate("<<Cut>>")
 )
-edit_menu.add_command(
+menu.add_command(
     label="Copy",
     underline=3,
     command=lambda: root.focus_get().event_generate("<<Copy>>"),
 )
-edit_menu.add_command(
+menu.add_command(
     label="Paste",
     underline=0,
     command=lambda: root.focus_get().event_generate("<<Paste>>"),
 )
-menu_bar.add_cascade(label="Edit", menu=edit_menu)
+menu_bar.add_cascade(label="Edit", menu=menu)
 
 # Add "Help" menu
-help_menu = tk.Menu(menu_bar, tearoff=0)
-help_menu.add_command(label="About", underline=0, command=about)
-menu_bar.add_cascade(label="Help", menu=help_menu)
+menu = tk.Menu(menu_bar, tearoff=0)
+menu.add_command(label="About", underline=0, command=about)
+menu_bar.add_cascade(label="Help", menu=menu)
 
 # Configure the menu bar in the root window
 root.config(menu=menu_bar)
