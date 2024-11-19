@@ -1,10 +1,9 @@
 import re
 import unittest
 
-from QuickTextInput import last_word
+from QuickTextInput import correct_line, last_word
 
 
-# Unit tests for the function
 class TestLastWord(unittest.TestCase):
     def test_basic_case(self):
         self.assertEqual(
@@ -78,6 +77,88 @@ class TestLastWord(unittest.TestCase):
             last_word("¡Hola! ¿Cómo estás?"),
             "estás",
             "Failed on a string with Unicode characters.",
+        )
+
+
+class TestCorrectLine(unittest.TestCase):
+    def test_basic_sentence(self):
+        self.assertEqual(
+            correct_line("hello world!this is a test."),
+            "Hello world! This is a test.",
+            "Failed on a basic sentence with no spaces after punctuation.",
+        )
+
+    def test_trailing_spaces(self):
+        self.assertEqual(
+            correct_line("This is a test.  "),
+            "This is a test.",
+            "Failed to remove trailing spaces.",
+        )
+
+    def test_multiple_spaces_between_words(self):
+        self.assertEqual(
+            correct_line("This  is   a test."),
+            "This is a test.",
+            "Failed to handle multiple spaces between words.",
+        )
+
+    def test_missing_space_after_punctuation(self):
+        self.assertEqual(
+            correct_line("Hello,world!How are you?"),
+            "Hello, world! How are you?",
+            "Failed to add space after punctuation.",
+        )
+
+    def test_capitalize_sentences(self):
+        self.assertEqual(
+            correct_line("this is a sentence. this is another one."),
+            "This is a sentence. This is another one.",
+            "Failed to capitalize the first letter of each sentence.",
+        )
+
+    def test_combination_of_issues(self):
+        self.assertEqual(
+            correct_line("this is,a test!another issue,here."),
+            "This is, a test! Another issue, here.",
+            "Failed on a sentence with multiple issues.",
+        )
+
+    def test_url_unchanged(self):
+        self.assertEqual(
+            correct_line("Visit https://example.com for more info."),
+            "Visit https://example.com for more info.",
+            "Failed to leave URLs unchanged.",
+        )
+
+    def test_mixed_url_and_text(self):
+        self.assertEqual(
+            correct_line("Here is a link: https://example.com.And some text."),
+            "Here is a link: https://example.com. And some text.",
+            "Failed to handle mixed URLs and text correctly.",
+        )
+
+    def test_no_punctuation(self):
+        self.assertEqual(
+            correct_line("this is a test without punctuation"),
+            "This is a test without punctuation",
+            "Failed to capitalize the first letter of a sentence without punctuation.",
+        )
+
+    def test_leading_whitespace(self):
+        self.assertEqual(
+            correct_line("   this is a test."),
+            "This is a test.",
+            "Failed to handle leading whitespace.",
+        )
+
+    def test_empty_string(self):
+        self.assertEqual(correct_line(""), "", "Failed on an empty string.")
+
+    def test_special_characters(self):
+        self.assertEqual(
+            correct_line("hello-world!test-case."),
+            "Hello-world! Test-case.",
+            "Failed on a sentence with special characters.",
         )
 
 
