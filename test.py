@@ -167,6 +167,26 @@ class TestCorrectLine(unittest.TestCase):
         self.assertEqual(correct_line("Hello  ,  world!"), "Hello, world!")
         self.assertEqual(correct_line("Fine ;I'll do it."), "Fine; I'll do it.")
 
+    def test_spaces_inside_closing_quotes(self):
+        self.assertEqual(correct_line('"Hello , world!"'), '"Hello, world!"')
+        self.assertEqual(correct_line('"Wait , what ?"'), '"Wait, what?"')
+        self.assertEqual(correct_line('"Oh no , not again !"'), '"Oh no, not again!"')
+
+    def test_spaces_after_closing_quotes(self):
+        self.assertEqual(correct_line('"Hello!"She said.'), '"Hello!" She said.')
+        self.assertEqual(correct_line('"What ?"he asked.'), '"What?" he asked.')
+        self.assertEqual(
+            correct_line('"Fine;I\'ll do it."He sighed.'),
+            '"Fine; I\'ll do it." He sighed.',
+        )
+
+    def test_combined_quote_handling(self):
+        self.assertEqual(correct_line('"Wait ,what?Really!"'), '"Wait, what? Really!"')
+        self.assertEqual(correct_line('" Hello world ! "'), '"Hello world!"')
+        self.assertEqual(
+            correct_line('"This is great ;really !"'), '"This is great; really!"'
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
