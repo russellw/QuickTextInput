@@ -162,3 +162,4 @@ cython_debug/
 words.txt
 corpora/
 *.ini
+favicon.ico
