@@ -176,12 +176,6 @@ def on_key_release(event):
     # they are either updated or cleared
     suggest()
 
-    # Space after punctuation
-    # The disjunction is because the empty string is considered to be in all strings
-    if c and c in ",.;:":
-        text_widget.insert("insert", " ")
-        return
-
 
 def pick(i):
     if i < len(suggestions):
