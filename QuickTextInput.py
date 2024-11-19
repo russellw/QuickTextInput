@@ -106,6 +106,32 @@ def correct_line(line):
     return line
 
 
+def create_button(image_name, tooltip_text, command):
+    image = ImageTk.PhotoImage(file=f"baseline_{image_name}_black_24.png")
+    button = tk.Button(toolbar_frame, image=image, command=command, relief="flat")
+    button.image = image  # Keep a reference to the image
+    button.bind("<Enter>", lambda e: show_tooltip(e, tooltip_text))
+    button.bind("<Leave>", hide_tooltip)
+    button.pack(side=tk.LEFT)
+    return button
+
+
+def create_cell_row(row, prefix):
+    for i in range(10):
+        # Create label for the identifier (e.g., 'F1', 'F2', etc.)
+        label_id = tk.Label(cell_frame, text=f"{prefix}{i+1}")
+        label_id.grid(row=row, column=i * 2, sticky="e", padx=2, pady=2)
+
+        # Create read-only text label with consistent width and relief for clarity
+        read_only_text = tk.Label(
+            cell_frame, text="", anchor="w", relief="sunken", width=10
+        )
+        read_only_text.grid(row=row, column=i * 2 + 1, sticky="ew", padx=2, pady=2)
+
+        # Store the label for programmatic access
+        suggestion_cells.append(read_only_text)
+
+
 def done():
     # Get the text from the text field
     text = text_widget.get("1.0", tk.END)
@@ -212,6 +238,11 @@ def pick(i):
         text_widget.insert("insert", suggestions[i] + " ")
 
 
+def separator():
+    separator = tk.Label(toolbar_frame, text="|", fg="light gray")
+    separator.pack(side="left", padx=5)
+
+
 def show_tooltip(event, text):
     # Calculate the widget's position relative to the root window
     widget_x = event.widget.winfo_rootx() - root.winfo_rootx()
@@ -309,22 +340,6 @@ root.config(menu=menu_bar)
 toolbar_frame = tk.Frame(root, bd=1, relief="raised")
 toolbar_frame.grid(row=0, column=0, sticky="ew")
 
-
-def create_button(image_name, tooltip_text, command):
-    image = ImageTk.PhotoImage(file=f"baseline_{image_name}_black_24.png")
-    button = tk.Button(toolbar_frame, image=image, command=command, relief="flat")
-    button.image = image  # Keep a reference to the image
-    button.bind("<Enter>", lambda e: show_tooltip(e, tooltip_text))
-    button.bind("<Leave>", hide_tooltip)
-    button.pack(side=tk.LEFT)
-    return button
-
-
-def separator():
-    separator = tk.Label(toolbar_frame, text="|", fg="light gray")
-    separator.pack(side="left", padx=5)
-
-
 # Add buttons to the toolbar
 create_button("add", "New", lambda: text_widget.delete("1.0", tk.END))
 create_button("folder_open", "Open", lambda: print())
@@ -371,23 +386,6 @@ for col in range(20):
 
 # Store read-only label references for programmatic updates
 suggestion_cells = []
-
-# Helper function to create a row of read-only cells
-def create_cell_row(row, prefix):
-    for i in range(10):
-        # Create label for the identifier (e.g., 'F1', 'F2', etc.)
-        label_id = tk.Label(cell_frame, text=f"{prefix}{i+1}")
-        label_id.grid(row=row, column=i * 2, sticky="e", padx=2, pady=2)
-
-        # Create read-only text label with consistent width and relief for clarity
-        read_only_text = tk.Label(
-            cell_frame, text="", anchor="w", relief="sunken", width=10
-        )
-        read_only_text.grid(row=row, column=i * 2 + 1, sticky="ew", padx=2, pady=2)
-
-        # Store the label for programmatic access
-        suggestion_cells.append(read_only_text)
-
 
 # First row with 'F1' to 'F10'
 create_cell_row(0, "F")
