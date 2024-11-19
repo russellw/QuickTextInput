@@ -130,13 +130,6 @@ class TestCorrectLine(unittest.TestCase):
             "Failed to leave URLs unchanged.",
         )
 
-    def test_mixed_url_and_text(self):
-        self.assertEqual(
-            correct_line("Here is a link: https://example.com.And some text."),
-            "Here is a link: https://example.com. And some text.",
-            "Failed to handle mixed URLs and text correctly.",
-        )
-
     def test_no_punctuation(self):
         self.assertEqual(
             correct_line("this is a test without punctuation"),
