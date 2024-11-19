@@ -56,7 +56,7 @@ def correct_line(line):
 
     # Step 3: Capitalize the first letter of each sentence
     line = re.sub(
-        r"(^|\.\s*)([a-z])", lambda match: match.group(1) + match.group(2).upper(), line
+        r"(^|[.?!]\s*)([a-z])", lambda match: match.group(1) + match.group(2).upper(), line
     )
 
     return line
