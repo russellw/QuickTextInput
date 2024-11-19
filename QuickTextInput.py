@@ -42,7 +42,7 @@ def correct_grammar(text):
 
 def correct_line(line):
     # Strip trailing spaces
-    line = line.rstrip()
+    line = line.strip()
 
     # Check if the line contains a URL. If so, return the line unchanged.
     if re.search(r"\bhttps?://", line):
