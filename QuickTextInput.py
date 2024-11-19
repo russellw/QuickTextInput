@@ -222,7 +222,7 @@ def suggest(suggestions1=[]):
         suggestion_cells[i].config(text="")
 
 
-# Set up argparse
+# Command line arguments
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--db",
@@ -230,7 +230,6 @@ parser.add_argument(
     default=None,
     help="Path to the SQLite database file (default: ~/Documents/QuickTextInput.db)",
 )
-
 args = parser.parse_args()
 
 # Determine the database path
