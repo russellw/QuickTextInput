@@ -222,185 +222,192 @@ def suggest(suggestions1=[]):
         suggestion_cells[i].config(text="")
 
 
-# Command line arguments
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "--db",
-    type=str,
-    default=None,
-    help="Path to the SQLite database file (default: ~/Documents/QuickTextInput.db)",
-)
-args = parser.parse_args()
+if __name__ == "__main__":
+    # Command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--db",
+        type=str,
+        default=None,
+        help="Path to the SQLite database file (default: ~/Documents/QuickTextInput.db)",
+    )
+    args = parser.parse_args()
 
-# Determine the database path
-if args.db:
-    db_path = args.db
-else:
-    # Default file path
-    user_profile = os.environ["USERPROFILE"]
-    documents_dir = os.path.join(user_profile, "Documents")
-    db_path = os.path.join(documents_dir, "QuickTextInput.db")
+    # Determine the database path
+    if args.db:
+        db_path = args.db
+    else:
+        # Default file path
+        user_profile = os.environ["USERPROFILE"]
+        documents_dir = os.path.join(user_profile, "Documents")
+        db_path = os.path.join(documents_dir, "QuickTextInput.db")
 
-# Connect to database
-conn = common.init_db(db_path)
+    # Connect to database
+    conn = common.init_db(db_path)
 
-# Read word frequencies
-word_freq = {}
-prefix_dict = defaultdict(list)
+    # Read word frequencies
+    word_freq = {}
+    prefix_dict = defaultdict(list)
 
-cursor = conn.cursor()
-cursor.execute("SELECT word, count FROM words")
-rs = cursor.fetchall()
-for r in rs:
-    word = r[0]
-    count = r[1]
-    word_freq[word] = count
+    cursor = conn.cursor()
+    cursor.execute("SELECT word, count FROM words")
+    rs = cursor.fetchall()
+    for r in rs:
+        word = r[0]
+        count = r[1]
+        word_freq[word] = count
 
-    # For each prefix in a word, add the word to the prefix dictionary
-    for i in range(1, len(word) + 1):
-        prefix = word[:i]
-        prefix_dict[prefix].append(word)
+        # For each prefix in a word, add the word to the prefix dictionary
+        for i in range(1, len(word) + 1):
+            prefix = word[:i]
+            prefix_dict[prefix].append(word)
 
-# Limit each prefix entry to the 20 most frequent words
-for prefix in prefix_dict:
-    prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
+    # Limit each prefix entry to the 20 most frequent words
+    for prefix in prefix_dict:
+        prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[
+            :20
+        ]
 
-# Initialize the main window and maximize it
-root = tk.Tk()
-root.state("zoomed")  # Maximize window
-root.title("QuickTextInput")
+    # Initialize the main window and maximize it
+    root = tk.Tk()
+    root.state("zoomed")  # Maximize window
+    root.title("QuickTextInput")
 
-# Define a base font
-default_font = font.nametofont("TkDefaultFont")
+    # Define a base font
+    default_font = font.nametofont("TkDefaultFont")
 
-# Update the base font size
-default_font.configure(size=14)
+    # Update the base font size
+    default_font.configure(size=14)
 
-# Configure the main window's layout
-root.grid_rowconfigure(0, weight=0)  # Toolbar row
-root.grid_rowconfigure(1, weight=1)  # Text widget should expand
-root.grid_rowconfigure(2, weight=0)  # First row of cells
-root.grid_rowconfigure(3, weight=0)  # Second row of cells
-root.grid_columnconfigure(0, weight=1)
+    # Configure the main window's layout
+    root.grid_rowconfigure(0, weight=0)  # Toolbar row
+    root.grid_rowconfigure(1, weight=1)  # Text widget should expand
+    root.grid_rowconfigure(2, weight=0)  # First row of cells
+    root.grid_rowconfigure(3, weight=0)  # Second row of cells
+    root.grid_columnconfigure(0, weight=1)
 
-# Create the menu bar
-menu_bar = tk.Menu(root)
+    # Create the menu bar
+    menu_bar = tk.Menu(root)
 
-# Add "File" menu
-menu = tk.Menu(menu_bar, tearoff=0)
-menu.add_command(
-    label="New", underline=0, command=lambda: text_widget.delete("1.0", tk.END)
-)
-menu.add_command(label="Open", underline=0, command=lambda: print("Open file"))
-menu.add_command(label="Save", underline=0, command=lambda: print("Save file"))
-menu.add_command(label="Save As", underline=5, command=lambda: print("Save file"))
-menu.add_command(label="Print", underline=0, command=lambda: print("Print file"))
-menu.add_separator()
-menu.add_command(label="Exit", underline=1, command=root.quit)
-menu_bar.add_cascade(label="File", menu=menu)
+    # Add "File" menu
+    menu = tk.Menu(menu_bar, tearoff=0)
+    menu.add_command(
+        label="New", underline=0, command=lambda: text_widget.delete("1.0", tk.END)
+    )
+    menu.add_command(label="Open", underline=0, command=lambda: print("Open file"))
+    menu.add_command(label="Save", underline=0, command=lambda: print("Save file"))
+    menu.add_command(label="Save As", underline=5, command=lambda: print("Save file"))
+    menu.add_command(label="Print", underline=0, command=lambda: print("Print file"))
+    menu.add_separator()
+    menu.add_command(label="Exit", underline=1, command=root.quit)
+    menu_bar.add_cascade(label="File", menu=menu)
 
-# Add "Edit" menu
-menu = tk.Menu(menu_bar, tearoff=0)
-menu.add_command(
-    label="Undo",
-    underline=0,
-    command=lambda: root.focus_get().event_generate("<<Undo>>"),
-)
-menu.add_command(
-    label="Redo",
-    underline=0,
-    command=lambda: root.focus_get().event_generate("<<Redo>>"),
-)
-menu.add_separator()
-menu.add_command(
-    label="Cut", underline=0, command=lambda: root.focus_get().event_generate("<<Cut>>")
-)
-menu.add_command(
-    label="Copy",
-    underline=3,
-    command=lambda: root.focus_get().event_generate("<<Copy>>"),
-)
-menu.add_command(
-    label="Paste",
-    underline=0,
-    command=lambda: root.focus_get().event_generate("<<Paste>>"),
-)
-menu_bar.add_cascade(label="Edit", menu=menu)
+    # Add "Edit" menu
+    menu = tk.Menu(menu_bar, tearoff=0)
+    menu.add_command(
+        label="Undo",
+        underline=0,
+        command=lambda: root.focus_get().event_generate("<<Undo>>"),
+    )
+    menu.add_command(
+        label="Redo",
+        underline=0,
+        command=lambda: root.focus_get().event_generate("<<Redo>>"),
+    )
+    menu.add_separator()
+    menu.add_command(
+        label="Cut",
+        underline=0,
+        command=lambda: root.focus_get().event_generate("<<Cut>>"),
+    )
+    menu.add_command(
+        label="Copy",
+        underline=3,
+        command=lambda: root.focus_get().event_generate("<<Copy>>"),
+    )
+    menu.add_command(
+        label="Paste",
+        underline=0,
+        command=lambda: root.focus_get().event_generate("<<Paste>>"),
+    )
+    menu_bar.add_cascade(label="Edit", menu=menu)
 
-# Add "Help" menu
-menu = tk.Menu(menu_bar, tearoff=0)
-menu.add_command(label="About", underline=0, command=about)
-menu_bar.add_cascade(label="Help", menu=menu)
+    # Add "Help" menu
+    menu = tk.Menu(menu_bar, tearoff=0)
+    menu.add_command(label="About", underline=0, command=about)
+    menu_bar.add_cascade(label="Help", menu=menu)
 
-# Configure the menu bar in the root window
-root.config(menu=menu_bar)
+    # Configure the menu bar in the root window
+    root.config(menu=menu_bar)
 
-# Create a toolbar frame
-toolbar_frame = tk.Frame(root, bd=1, relief="raised")
-toolbar_frame.grid(row=0, column=0, sticky="ew")
+    # Create a toolbar frame
+    toolbar_frame = tk.Frame(root, bd=1, relief="raised")
+    toolbar_frame.grid(row=0, column=0, sticky="ew")
 
-# Add buttons to the toolbar
-create_button("add", "New", lambda: text_widget.delete("1.0", tk.END))
-create_button("folder_open", "Open", lambda: print())
-create_button("save", "Save", lambda: print())
-create_button("print", "Print", lambda: print())
-separator()
-create_button("content_cut", "Cut", lambda: root.focus_get().event_generate("<<Cut>>"))
-create_button(
-    "content_copy", "Copy", lambda: root.focus_get().event_generate("<<Copy>>")
-)
-create_button(
-    "content_paste", "Paste", lambda: root.focus_get().event_generate("<<Paste>>")
-)
-separator()
-create_button("undo", "Undo", lambda: root.focus_get().event_generate("<<Undo>>"))
-create_button("redo", "Redo", lambda: root.focus_get().event_generate("<<Redo>>"))
-separator()
-create_button("format_bold", "Bold", bold)
-create_button("format_italic", "Italic", bold)
-create_button("format_strikethrough", "Strikethrough", bold)
-separator()
-create_button("insert_link", "Insert link", bold)
-separator()
-create_button("done", "Move finished text to clipboard", done)
+    # Add buttons to the toolbar
+    create_button("add", "New", lambda: text_widget.delete("1.0", tk.END))
+    create_button("folder_open", "Open", lambda: print())
+    create_button("save", "Save", lambda: print())
+    create_button("print", "Print", lambda: print())
+    separator()
+    create_button(
+        "content_cut", "Cut", lambda: root.focus_get().event_generate("<<Cut>>")
+    )
+    create_button(
+        "content_copy", "Copy", lambda: root.focus_get().event_generate("<<Copy>>")
+    )
+    create_button(
+        "content_paste", "Paste", lambda: root.focus_get().event_generate("<<Paste>>")
+    )
+    separator()
+    create_button("undo", "Undo", lambda: root.focus_get().event_generate("<<Undo>>"))
+    create_button("redo", "Redo", lambda: root.focus_get().event_generate("<<Redo>>"))
+    separator()
+    create_button("format_bold", "Bold", bold)
+    create_button("format_italic", "Italic", bold)
+    create_button("format_strikethrough", "Strikethrough", bold)
+    separator()
+    create_button("insert_link", "Insert link", bold)
+    separator()
+    create_button("done", "Move finished text to clipboard", done)
 
-# Create a custom font for the Text widget
-text_font = font.Font(family="Consolas", size=14)
+    # Create a custom font for the Text widget
+    text_font = font.Font(family="Consolas", size=14)
 
-# Create the main text widget that occupies most of the screen
-text_widget = tk.Text(root, font=text_font, undo=True)
-text_widget.grid(row=1, column=0, sticky="nsew")
-text_widget.focus_set()
+    # Create the main text widget that occupies most of the screen
+    text_widget = tk.Text(root, font=text_font, undo=True)
+    text_widget.grid(row=1, column=0, sticky="nsew")
+    text_widget.focus_set()
 
-# Stop the cursor from blinking
-text_widget.config(insertontime=0, insertofftime=0)
+    # Stop the cursor from blinking
+    text_widget.config(insertontime=0, insertofftime=0)
 
-# Frame to hold the cells below the text widget
-cell_frame = tk.Frame(root)
-cell_frame.grid(row=2, column=0, sticky="ew", rowspan=2)
+    # Frame to hold the cells below the text widget
+    cell_frame = tk.Frame(root)
+    cell_frame.grid(row=2, column=0, sticky="ew", rowspan=2)
 
-# Set equal weight for each column in the cell frame to ensure uniform widths
-for col in range(20):
-    cell_frame.grid_columnconfigure(col, weight=1)
+    # Set equal weight for each column in the cell frame to ensure uniform widths
+    for col in range(20):
+        cell_frame.grid_columnconfigure(col, weight=1)
 
-# Store read-only label references for programmatic updates
-suggestion_cells = []
+    # Store read-only label references for programmatic updates
+    suggestion_cells = []
 
-# First row with 'F1' to 'F10'
-create_cell_row(0, "F")
+    # First row with 'F1' to 'F10'
+    create_cell_row(0, "F")
 
-# Second row with '1' to '10'
-create_cell_row(1, "")
+    # Second row with '1' to '10'
+    create_cell_row(1, "")
 
-# Second row corresponds to first suggestions
-suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
+    # Second row corresponds to first suggestions
+    suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
 
-# Suggestions
-suggestions = []
+    # Suggestions
+    suggestions = []
 
-# Bind key events
-root.bind("<F12>", lambda event: done())
-text_widget.bind("<KeyRelease>", on_key_release)
+    # Bind key events
+    root.bind("<F12>", lambda event: done())
+    text_widget.bind("<KeyRelease>", on_key_release)
 
-# Run the Tkinter event loop
-root.mainloop()
+    # Run the Tkinter event loop
+    root.mainloop()
