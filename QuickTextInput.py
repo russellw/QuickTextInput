@@ -48,15 +48,20 @@ def correct_line(line):
     if re.search(r"\bhttps?://", line):
         return line
 
-    # Step 1: Ensure punctuation marks are followed by a space
+    # Step 1: Remove spaces before punctuation marks
+    line = re.sub(r"\s+([,;:!?])", r"\1", line)
+
+    # Step 2: Ensure punctuation marks are followed by a space
     line = re.sub(r"([,;:!?])(\S)", r"\1 \2", line)
 
-    # Step 2: Remove extra spaces between words
+    # Step 3: Remove extra spaces between words
     line = re.sub(r"\s{2,}", " ", line)
 
-    # Step 3: Capitalize the first letter of each sentence
+    # Step 4: Capitalize the first letter of each sentence
     line = re.sub(
-        r"(^|[.?!]\s*)([a-z])", lambda match: match.group(1) + match.group(2).upper(), line
+        r"(^|[.?!]\s*)([a-z])",
+        lambda match: match.group(1) + match.group(2).upper(),
+        line,
     )
 
     return line

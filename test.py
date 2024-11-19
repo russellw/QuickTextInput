@@ -154,6 +154,19 @@ class TestCorrectLine(unittest.TestCase):
             "Failed on a sentence with special characters.",
         )
 
+    def test_remove_spaces_before_punctuation(self):
+        self.assertEqual(correct_line("Hello , world!"), "Hello, world!")
+        self.assertEqual(
+            correct_line("This is great ; really!"), "This is great; really!"
+        )
+        self.assertEqual(correct_line("What ? No!"), "What? No!")
+        self.assertEqual(correct_line("Oh , no , not again !"), "Oh, no, not again!")
+
+    def test_combined_fix_with_spaces_after_punctuation(self):
+        self.assertEqual(correct_line("Wait ,what?Really!"), "Wait, what? Really!")
+        self.assertEqual(correct_line("Hello  ,  world!"), "Hello, world!")
+        self.assertEqual(correct_line("Fine ;I'll do it."), "Fine; I'll do it.")
+
 
 if __name__ == "__main__":
     unittest.main()
