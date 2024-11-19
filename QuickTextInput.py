@@ -9,50 +9,6 @@ from PIL import ImageTk
 
 import common
 
-# Set up argparse
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "--db",
-    type=str,
-    default=None,
-    help="Path to the SQLite database file (default: ~/Documents/QuickTextInput.db)",
-)
-
-args = parser.parse_args()
-
-# Determine the database path
-if args.db:
-    db_path = args.db
-else:
-    # Default file path
-    user_profile = os.environ["USERPROFILE"]
-    documents_dir = os.path.join(user_profile, "Documents")
-    db_path = os.path.join(documents_dir, "QuickTextInput.db")
-
-# Connect to database
-conn = common.init_db(db_path)
-
-# Read word frequencies
-word_freq = {}
-prefix_dict = defaultdict(list)
-
-cursor = conn.cursor()
-cursor.execute("SELECT word, count FROM words")
-rs = cursor.fetchall()
-for r in rs:
-    word = r[0]
-    count = r[1]
-    word_freq[word] = count
-
-    # For each prefix in a word, add the word to the prefix dictionary
-    for i in range(1, len(word) + 1):
-        prefix = word[:i]
-        prefix_dict[prefix].append(word)
-
-# Limit each prefix entry to the 20 most frequent words
-for prefix in prefix_dict:
-    prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
-
 
 def about():
     messagebox.showinfo(
@@ -265,6 +221,50 @@ def suggest(suggestions1=[]):
     for i in range(len(suggestions), 20):
         suggestion_cells[i].config(text="")
 
+
+# Set up argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--db",
+    type=str,
+    default=None,
+    help="Path to the SQLite database file (default: ~/Documents/QuickTextInput.db)",
+)
+
+args = parser.parse_args()
+
+# Determine the database path
+if args.db:
+    db_path = args.db
+else:
+    # Default file path
+    user_profile = os.environ["USERPROFILE"]
+    documents_dir = os.path.join(user_profile, "Documents")
+    db_path = os.path.join(documents_dir, "QuickTextInput.db")
+
+# Connect to database
+conn = common.init_db(db_path)
+
+# Read word frequencies
+word_freq = {}
+prefix_dict = defaultdict(list)
+
+cursor = conn.cursor()
+cursor.execute("SELECT word, count FROM words")
+rs = cursor.fetchall()
+for r in rs:
+    word = r[0]
+    count = r[1]
+    word_freq[word] = count
+
+    # For each prefix in a word, add the word to the prefix dictionary
+    for i in range(1, len(word) + 1):
+        prefix = word[:i]
+        prefix_dict[prefix].append(word)
+
+# Limit each prefix entry to the 20 most frequent words
+for prefix in prefix_dict:
+    prefix_dict[prefix] = sorted(prefix_dict[prefix], key=lambda w: -word_freq[w])[:20]
 
 # Initialize the main window and maximize it
 root = tk.Tk()
