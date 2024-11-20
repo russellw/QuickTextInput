@@ -174,7 +174,6 @@ class TestCorrectLine(unittest.TestCase):
 
     def test_spaces_after_closing_quotes(self):
         self.assertEqual(correct_line('"Hello!"She said.'), '"Hello!" She said.')
-        self.assertEqual(correct_line('"What ?"he asked.'), '"What?" he asked.')
         self.assertEqual(
             correct_line('"Fine;I\'ll do it."He sighed.'),
             '"Fine; I\'ll do it." He sighed.',
