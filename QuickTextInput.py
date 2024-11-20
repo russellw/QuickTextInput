@@ -70,8 +70,6 @@ def correct_line(line):
             r.append(c)
             continue
 
-        # Capitalize the first letter of each sentence
-
         # Space after some punctuation
         if has_space_after(r[-1]) and c.isalnum():
             r.append(" ")
@@ -80,6 +78,10 @@ def correct_line(line):
         if r[-1] in string.punctuation:
             while r[-1] == " ":
                 r.pop()
+
+        # Capitalize the first letter of each sentence
+        if c.islower() and end_sentence(r):
+            c = c.upper()
 
         r.append(c)
 
@@ -156,6 +158,15 @@ def done():
                 """,
                 (word, count, count),
             )
+
+
+def end_sentence(s):
+    for c in reversed(s):
+        if is_terminal(c):
+            return True
+        if c in ' "':
+            continue
+        return False
 
 
 def has_space_after(c):
