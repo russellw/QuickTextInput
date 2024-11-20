@@ -52,7 +52,7 @@ def correct_line(line):
 
     for c in line:
         # Handle opening and closing quotes
-        if char == '"':
+        if c == '"':
             if inside_quotes:
                 # No space before closing quote
                 while r[-1] == " ":
@@ -60,14 +60,14 @@ def correct_line(line):
             else:
                 # Space before opening quote
                 r.append(" ")
-            r.append(char)
+            r.append(c)
             inside_quotes = not inside_quotes
             continue
 
         # Space before opening bracket
-        if char == "(":
+        if c == "(":
             r.append(" ")
-            r.append(char)
+            r.append(c)
             continue
 
         # Capitalize the first letter of each sentence
@@ -81,7 +81,7 @@ def correct_line(line):
             while r[-1] == " ":
                 r.pop()
 
-        r.append(char)
+        r.append(c)
 
     r = "".join(r)
 
