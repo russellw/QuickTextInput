@@ -56,32 +56,32 @@ def correct_line(line):
             if inside_quotes:
                 # No space before closing quote
                 while r[-1] == " ":
-                    corrected.pop()
+                    r.pop()
             else:
                 # Space before opening quote
-                corrected.append(" ")
-            corrected.append(char)
+                r.append(" ")
+            r.append(char)
             inside_quotes = not inside_quotes
             continue
 
         # Space before opening bracket
         if char == "(":
-            corrected.append(" ")
-            corrected.append(char)
+            r.append(" ")
+            r.append(char)
             continue
 
         # Capitalize the first letter of each sentence
 
         # Space after some punctuation
         if has_space_after(r[-1]) and c.isalnum():
-            corrected.append(" ")
+            r.append(" ")
 
         # No space before punctuation
         if r[-1] in string.punctuation:
             while r[-1] == " ":
-                corrected.pop()
+                r.pop()
 
-        corrected.append(char)
+        r.append(char)
 
     r = "".join(r)
 
