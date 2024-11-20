@@ -167,6 +167,7 @@ def end_sentence(s):
         if c in ' "':
             continue
         return False
+    return True
 
 
 def has_space_after(c):
