@@ -1,4 +1,5 @@
 import argparse
+import inspect
 import os
 import re
 import string
@@ -122,6 +123,11 @@ def create_cell_row(row, prefix):
 
         # Store the label for programmatic access
         suggestion_cells.append(read_only_text)
+
+
+def dbg(a):
+    info = inspect.getframeinfo(inspect.currentframe().f_back)
+    print(f"{info.filename}:{info.function}:{info.lineno}: {a}")
 
 
 def done():
