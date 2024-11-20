@@ -1,3 +1,4 @@
+import string
 import argparse
 import os
 import re
@@ -39,32 +40,59 @@ def correct_grammar(text):
 
     return corrected_text
 
-
+def is_terminal(c):
+    return c in'.?!'
+def has_space_after(c):
+        return is_terminal(c)or c in',;:)'
 def correct_line(line):
-    # Strip trailing spaces
-    line = line.strip()
-
     # Check if the line contains a URL. If so, return the line unchanged.
     if re.search(r"\bhttps?://", line):
         return line
 
-    # Step 1: Remove spaces before punctuation marks
-    line = re.sub(r"\s+([,;:!?])", r"\1", line)
+    # Variables to help build the corrected line
+    r = [' ']
+    inside_quotes = False  # Track whether we're inside quotation marks
 
-    # Step 2: Ensure punctuation marks are followed by a space
-    line = re.sub(r"([,;:!?])(\S)", r"\1 \2", line)
+    for c in line:
+        # Handle opening and closing quotes
+        if char == '"':
+            if inside_quotes:
+                #no space before closing quote
+                while  r[-1]== " ":
+                    corrected.pop()  
+            else:
+                #space before opening quote
+                corrected.append(' ')
+            corrected.append(char)
+            inside_quotes = not inside_quotes
+            continue
+            
+        #space before opening bracket
+        if char == '(':
+            corrected.append(' ')
+            corrected.append(char)
+            continue
 
-    # Step 3: Remove extra spaces between words
-    line = re.sub(r"\s{2,}", " ", line)
+        # Capitalize the first letter of each sentence
+            
+        #space after some punctuation
+        if has_space_after(r[-1])and c.isalnum():
+                    corrected.append(' ')
 
-    # Step 4: Capitalize the first letter of each sentence
-    line = re.sub(
-        r"(^|[.?!]\s*)([a-z])",
-        lambda match: match.group(1) + match.group(2).upper(),
-        line,
-    )
+        # no space before punctuation
+        if r[-1]in string.punctuation:
+                while  r[-1]== " ":
+                    corrected.pop()  
 
-    return line
+        corrected.append(char)
+
+    r=''.join(r)
+
+    # Skip extra spaces
+    r=r.strip()
+    r = re.sub(r"\s{2,}", " ", r)
+
+    return r
 
 
 def create_button(image_name, tooltip_text, command):
