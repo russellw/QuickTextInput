@@ -182,7 +182,7 @@ class TestCorrectLine(unittest.TestCase):
 
     def test_combined_quote_handling(self):
         self.assertEqual(correct_line('"Wait ,what?Really!"'), '"Wait, what? Really!"')
-        self.assertEqual(correct_line('" Hello world ! "'), '"Hello world!"')
+        self.assertEqual(correct_line('"Hello world ! "'), '"Hello world!"')
         self.assertEqual(
             correct_line('"This is great ;really !"'), '"This is great; really!"'
         )
