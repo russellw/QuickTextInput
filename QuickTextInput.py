@@ -1,7 +1,7 @@
-import string
 import argparse
 import os
 import re
+import string
 import tkinter as tk
 from collections import defaultdict
 from tkinter import font, messagebox
@@ -40,56 +40,53 @@ def correct_grammar(text):
 
     return corrected_text
 
-def is_terminal(c):
-    return c in'.?!'
-def has_space_after(c):
-        return is_terminal(c)or c in',;:)'
+
 def correct_line(line):
     # Check if the line contains a URL. If so, return the line unchanged.
     if re.search(r"\bhttps?://", line):
         return line
 
     # Variables to help build the corrected line
-    r = [' ']
+    r = [" "]
     inside_quotes = False  # Track whether we're inside quotation marks
 
     for c in line:
         # Handle opening and closing quotes
         if char == '"':
             if inside_quotes:
-                #no space before closing quote
-                while  r[-1]== " ":
-                    corrected.pop()  
+                # No space before closing quote
+                while r[-1] == " ":
+                    corrected.pop()
             else:
-                #space before opening quote
-                corrected.append(' ')
+                # Space before opening quote
+                corrected.append(" ")
             corrected.append(char)
             inside_quotes = not inside_quotes
             continue
-            
-        #space before opening bracket
-        if char == '(':
-            corrected.append(' ')
+
+        # Space before opening bracket
+        if char == "(":
+            corrected.append(" ")
             corrected.append(char)
             continue
 
         # Capitalize the first letter of each sentence
-            
-        #space after some punctuation
-        if has_space_after(r[-1])and c.isalnum():
-                    corrected.append(' ')
 
-        # no space before punctuation
-        if r[-1]in string.punctuation:
-                while  r[-1]== " ":
-                    corrected.pop()  
+        # Space after some punctuation
+        if has_space_after(r[-1]) and c.isalnum():
+            corrected.append(" ")
+
+        # No space before punctuation
+        if r[-1] in string.punctuation:
+            while r[-1] == " ":
+                corrected.pop()
 
         corrected.append(char)
 
-    r=''.join(r)
+    r = "".join(r)
 
     # Skip extra spaces
-    r=r.strip()
+    r = r.strip()
     r = re.sub(r"\s{2,}", " ", r)
 
     return r
@@ -161,9 +158,17 @@ def done():
             )
 
 
+def has_space_after(c):
+    return is_terminal(c) or c in ",;:)"
+
+
 def hide_tooltip(event):
     if event.widget.tooltip:
         event.widget.tooltip.destroy()
+
+
+def is_terminal(c):
+    return c in ".?!"
 
 
 def last_word(s):
