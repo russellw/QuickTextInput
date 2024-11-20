@@ -57,10 +57,14 @@ def correct_line(line):
                 # No space before closing quote
                 while r[-1] == " ":
                     r.pop()
+                r.append(c)
+
+                # Space after closing quote
+                r.append(" ")
             else:
                 # Space before opening quote
                 r.append(" ")
-            r.append(c)
+                r.append(c)
             inside_quotes = not inside_quotes
             continue
 
@@ -75,7 +79,7 @@ def correct_line(line):
             r.append(" ")
 
         # No space before punctuation
-        if r[-1] in string.punctuation:
+        if c in string.punctuation:
             while r[-1] == " ":
                 r.pop()
 
