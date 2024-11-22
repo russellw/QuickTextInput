@@ -458,7 +458,7 @@ if __name__ == "__main__":
             label_text = "0"
         else:
             label_text = f"F{i-9}"
-        label_id = tk.Label(cell_frame, text=label_text, width=5, anchor="e")
+        label_id = tk.Label(cell_frame, text=label_text, anchor="e")
         label_id.grid(row=21 - i, column=0, sticky="e", padx=2, pady=2)
 
         # Create read-only suggestion label
