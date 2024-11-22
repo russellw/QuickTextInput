@@ -331,7 +331,7 @@ if __name__ == "__main__":
     default_font = font.nametofont("TkDefaultFont")
 
     # Update the base font size
-    default_font.configure(size=14)
+    default_font.configure(size=12)
 
     # Configure the main window's layout
     root.grid_rowconfigure(0, weight=0)  # Toolbar row
@@ -429,7 +429,7 @@ if __name__ == "__main__":
     create_button("done", "Move finished text to clipboard", done)
 
     # Create a custom font for the Text widget
-    text_font = font.Font(family="Consolas", size=14)
+    text_font = font.Font(family="Consolas", size=12)
 
     # Create the main text widget that occupies most of the screen
     text_widget = tk.Text(root, font=text_font, undo=True)
