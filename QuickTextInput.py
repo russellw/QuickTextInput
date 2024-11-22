@@ -456,12 +456,14 @@ if __name__ == "__main__":
         label_id.grid(row=i, column=0, sticky="e", padx=2, pady=2)
 
         # Create read-only suggestion label
-        read_only_text = tk.Label(cell_frame, text="", anchor="w", relief="sunken", width=20)
+        read_only_text = tk.Label(
+            cell_frame, text="", anchor="w", relief="sunken", width=20
+        )
         read_only_text.grid(row=i, column=1, sticky="ew", padx=2, pady=2)
 
         # Store the label for programmatic access
         suggestion_cells.append(read_only_text)
-        
+
     # Suggestions
     suggestions = []
 
