@@ -335,10 +335,13 @@ if __name__ == "__main__":
 
     # Configure the main window's layout
     root.grid_rowconfigure(0, weight=0)  # Toolbar row
-    root.grid_rowconfigure(1, weight=1)  # Text widget should expand
-    root.grid_rowconfigure(2, weight=0)  # First row of cells
-    root.grid_rowconfigure(3, weight=0)  # Second row of cells
-    root.grid_columnconfigure(0, weight=1)
+    root.grid_rowconfigure(1, weight=1)  # Empty space above suggestions to stretch
+    for i in range(2, 21):
+        root.grid_rowconfigure(i, weight=0)  # Suggestion rows (1 to 20)
+
+    root.grid_columnconfigure(0, weight=0)  # Label column
+    root.grid_columnconfigure(1, weight=0)  # Suggestion column
+    root.grid_columnconfigure(2, weight=1)  # Text widget column (expands)
 
     # Create the menu bar
     menu_bar = tk.Menu(root)
@@ -396,7 +399,7 @@ if __name__ == "__main__":
 
     # Create a toolbar frame
     toolbar_frame = tk.Frame(root, bd=1, relief="raised")
-    toolbar_frame.grid(row=0, column=0, sticky="ew")
+    toolbar_frame.grid(row=0, column=0, columnspan=3, sticky="ew")
 
     # Add buttons to the toolbar
     create_button("add", "New", lambda: text_widget.delete("1.0", tk.END))
@@ -430,32 +433,35 @@ if __name__ == "__main__":
 
     # Create the main text widget that occupies most of the screen
     text_widget = tk.Text(root, font=text_font, undo=True)
-    text_widget.grid(row=1, column=0, sticky="nsew")
+    text_widget.grid(row=1, column=2, rowspan=21, sticky="nsew")
     text_widget.focus_set()
 
     # Stop the cursor from blinking
     text_widget.config(insertontime=0, insertofftime=0)
 
-    # Frame to hold the cells below the text widget
+    # Frame to hold the cells on the left side of the text widget
     cell_frame = tk.Frame(root)
-    cell_frame.grid(row=2, column=0, sticky="ew", rowspan=2)
+    cell_frame.grid(row=2, column=0, columnspan=2, rowspan=20, sticky="ns")
 
-    # Set equal weight for each column in the cell frame to ensure uniform widths
-    for col in range(20):
-        cell_frame.grid_columnconfigure(col, weight=1)
+    # Configure the left column layout for 20 rows
+    for row in range(20):
+        cell_frame.grid_rowconfigure(row, weight=1)
 
     # Store read-only label references for programmatic updates
     suggestion_cells = []
 
-    # First row with 'F1' to 'F10'
-    create_cell_row(0, "F")
+    for i in range(20):
+        # Create label for the identifier (e.g., 'F1', 'F2', etc.)
+        label_id = tk.Label(cell_frame, text=f"F{i+1}", width=5, anchor="e")
+        label_id.grid(row=i, column=0, sticky="e", padx=2, pady=2)
 
-    # Second row with '1' to '10'
-    create_cell_row(1, "")
+        # Create read-only suggestion label
+        read_only_text = tk.Label(cell_frame, text="", anchor="w", relief="sunken", width=20)
+        read_only_text.grid(row=i, column=1, sticky="ew", padx=2, pady=2)
 
-    # Second row corresponds to first suggestions
-    suggestion_cells = suggestion_cells[10:] + suggestion_cells[:10]
-
+        # Store the label for programmatic access
+        suggestion_cells.append(read_only_text)
+        
     # Suggestions
     suggestions = []
 
