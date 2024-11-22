@@ -452,14 +452,20 @@ if __name__ == "__main__":
 
     for i in range(20):
         # Create label for the identifier (e.g., 'F1', 'F2', etc.)
-        label_id = tk.Label(cell_frame, text=f"F{i+1}", width=5, anchor="e")
-        label_id.grid(row=i, column=0, sticky="e", padx=2, pady=2)
+        if i < 9:
+            label_text = str(i + 1)
+        elif i == 9:
+            label_text = "0"
+        else:
+            label_text = f"F{i-9}"
+        label_id = tk.Label(cell_frame, text=label_text, width=5, anchor="e")
+        label_id.grid(row=21 - i, column=0, sticky="e", padx=2, pady=2)
 
         # Create read-only suggestion label
         read_only_text = tk.Label(
             cell_frame, text="", anchor="w", relief="sunken", width=20
         )
-        read_only_text.grid(row=i, column=1, sticky="ew", padx=2, pady=2)
+        read_only_text.grid(row=21 - i, column=1, sticky="ew", padx=2, pady=2)
 
         # Store the label for programmatic access
         suggestion_cells.append(read_only_text)
