@@ -109,22 +109,6 @@ def create_button(image_name, tooltip_text, command):
     return button
 
 
-def create_cell_row(row, prefix):
-    for i in range(10):
-        # Create label for the identifier (e.g., 'F1', 'F2', etc.)
-        label_id = tk.Label(cell_frame, text=f"{prefix}{i+1}")
-        label_id.grid(row=row, column=i * 2, sticky="e", padx=2, pady=2)
-
-        # Create read-only text label with consistent width and relief for clarity
-        read_only_text = tk.Label(
-            cell_frame, text="", anchor="w", relief="sunken", width=10
-        )
-        read_only_text.grid(row=row, column=i * 2 + 1, sticky="ew", padx=2, pady=2)
-
-        # Store the label for programmatic access
-        suggestion_cells.append(read_only_text)
-
-
 def dbg(a):
     info = inspect.getframeinfo(inspect.currentframe().f_back)
     print(f"{info.filename}:{info.function}:{info.lineno}: {a}")
