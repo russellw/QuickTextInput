@@ -34,7 +34,7 @@ def correct_grammar(text):
     corrected_text = "\n".join(corrected_lines).strip()
 
     # Add a period at the end if there's no terminal punctuation and no URL at the end
-    if not re.search(r"[.?!]$", corrected_text) and not re.search(
+    if not end_sentence(corrected_text) and not re.search(
         r"\bhttps?://\S*$", corrected_text
     ):
         corrected_text += "."
@@ -95,6 +95,11 @@ def correct_line(line):
     # Skip extra spaces
     r = r.strip()
     r = re.sub(r"\s{2,}", " ", r)
+
+    if not end_sentence(r):
+        r += "."
+    if inside_quotes:
+        r += '"'
 
     return r
 
