@@ -1,10 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <!-- Background with only the top-left corner rounded -->
   <path d="M30,0 h70 v100 h-100 v-70 a30,30 0 0 1 30,-30 z" fill="blue" />
-
-  <!-- Vertically centered "Q" -->
   <text x="5" y="90" font-family="Arial, sans-serif" font-size="110" fill="white" text-anchor="start">Q</text>
-  
-  <!-- Smaller "TI" -->
   <text x="87" y="90" font-family="Arial, sans-serif" font-size="30" fill="white" text-anchor="start">|</text>
 </svg>
