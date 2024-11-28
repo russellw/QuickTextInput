@@ -6,6 +6,8 @@ for %%x in (*.py) do capitalize-comments-py -w %%x||exit /b
 for %%x in (*.py) do sort-fns-py -w %%x||exit /b
 
 rem HTML
-call js-beautify --end-with-newline -t *.html -r||exit /b
+sort-css -w index.html
+call js-beautify --end-with-newline -t index.html -r||exit /b
+sort-html-attrs -w index.html
 
 git diff
