@@ -51,9 +51,9 @@ if __name__ == "__main__":
     height = 0
     for iio in files:
         input1, input2, output = iio
-        input1=os.path.join('screenshots',input1)
+        input1 = os.path.join("screenshots", input1)
         if input2:
-            input2=os.path.join('screenshots',input2)
+            input2 = os.path.join("screenshots", input2)
             width1, height1 = get_image_size(input2)
             width = max(width, width1)
             height = max(height, height1)
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     oh = height + y
     for iio in files:
         input1, input2, output = iio
-        input1=os.path.join('screenshots',input1)
+        input1 = os.path.join("screenshots", input1)
         if input2:
-            input2=os.path.join('screenshots',input2)
+            input2 = os.path.join("screenshots", input2)
         comp(input1, input2, output)
