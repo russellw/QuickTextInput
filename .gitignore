@@ -163,3 +163,6 @@ corpora/
 *.ini
 a.html
 *.db
+partial.png
+full.png
+fixup.png
