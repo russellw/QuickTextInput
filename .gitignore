@@ -163,3 +163,4 @@ corpora/
 *.ini
 favicon.ico
 a.html
+*.db
