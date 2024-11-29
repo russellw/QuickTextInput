@@ -161,6 +161,5 @@ cython_debug/
 
 corpora/
 *.ini
-favicon.ico
 a.html
 *.db
