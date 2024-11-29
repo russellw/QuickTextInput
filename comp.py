@@ -5,17 +5,16 @@ from PIL import Image
 
 x = 500
 y = 100
-files = [["partial-input.png", None, "partial.png"]]
+files = [
+    ["partial-input.png", None, "partial.png"],
+    ["full-input.png", "clipboard-input.jpg", "full.png"],
+    ["fixup-input.png", "np-input.png", "fixup.png"],
+]
 
 
 def comp(input1, input2, output):
-    # Get the size of the existing image
-    width, height = get_image_size(image_path)
-
-    # Construct and execute the ImageMagick command
-    command = ["magick", "-size", f"{width}x{height}", "xc:none", output_filename]
+    command = "magick", "-size", f"{ow}x{oh}", "xc:none", r"\t\transparent.png"
     subprocess.run(command, check=True)
-    print(f"Transparent canvas created: {output_filename}")
 
 
 def get_image_size(image_path):
@@ -24,9 +23,16 @@ def get_image_size(image_path):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python create_canvas_from_image.py <image_path>")
-        sys.exit(1)
-
-    image_path = sys.argv[1]
-    create_transparent_canvas(image_path)
+    width = 0
+    height = 0
+    for iio in files:
+        input1, input2, output = iio
+        if input2:
+            width1, height1 = get_image_size(input2)
+            width = max(width, width1)
+            height = max(height, height1)
+    ow = width + x
+    oh = height + y
+    for iio in files:
+        input1, input2, output = iio
+        comp(input1, input2, output)
