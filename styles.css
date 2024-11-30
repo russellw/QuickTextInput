@@ -4,7 +4,7 @@
 		line-height: 1.5;
 	}
 
-	/*header section*/
+	/* header section */
 	.logo {
 		height: 30px;
 		margin-right: 20px;
@@ -35,7 +35,7 @@
 		color: blue;
 	}
 
-	/*hero section*/
+	/* hero section */
 	.hero {
 		display: flex;
 		align-items: center;
