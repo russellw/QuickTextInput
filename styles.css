@@ -4,6 +4,7 @@
 		line-height: 1.5;
 	}
 
+	/*header section*/
 	.logo {
 		height: 30px;
 		margin-right: 20px;
@@ -34,29 +35,23 @@
 		color: blue;
 	}
 
+	/*hero section*/
 	.hero {
 		display: flex;
 		align-items: center;
-		/* Vertically align items */
 		justify-content: space-between;
 		padding: 60px 10%;
-		/* Spacing around the hero section */
 		background-color: #f4f4f4;
-		/* Light background */
 		color: #333;
 	}
 
-	/* Hero Content (Text) */
 	.hero-content {
 		flex: 1;
-		/* Takes available space */
 		max-width: 50%;
-		/* Prevents text from stretching too wide */
 	}
 
 	.hero-content h1 {
 		font-size: 48px;
-		/* Large, impactful headline */
 		margin-bottom: 20px;
 	}
 
@@ -65,11 +60,9 @@
 		margin-bottom: 30px;
 	}
 
-	/* CTA Buttons */
 	.cta-buttons {
 		display: flex;
 		gap: 20px;
-		/* Space between buttons */
 	}
 
 	.btn {
@@ -77,36 +70,29 @@
 		padding: 12px 24px;
 		font-size: 16px;
 		border-radius: 5px;
-		/* Rounded corners */
 		transition: background-color 0.3s;
 	}
 
 	.btn-primary {
 		background-color: #3498db;
-		/* Primary button color */
 		color: white;
 	}
 
 	.btn-primary:hover {
 		background-color: #2980b9;
-		/* Darker on hover */
 	}
 
 	.btn-secondary {
 		background-color: #95a5a6;
-		/* Secondary button color */
 		color: white;
 	}
 
 	.btn-secondary:hover {
 		background-color: #7f8c8d;
-		/* Darker on hover */
 	}
 
-	/* Hero Image */
 	.hero-image img {
 		width: 100%;
 		max-width: 500px;
-		/* Limit image size */
 		border-radius: 10px;
 	}
