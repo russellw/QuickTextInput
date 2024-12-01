@@ -15,9 +15,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 20px 10%;
-		position: sticky;
-		top: 0;
-		z-index: 1000;
 	}
 
 	nav ul {
@@ -102,16 +99,19 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 20px;
+		/* Space between each feature section */
 		max-width: 1000px;
+		/* Control the overall width */
 		margin: 0 auto;
-		/* Center the feature container on the page */
+		/* Center the feature container */
 		padding: 0 20px;
 		/* Add padding for small screens */
 	}
 
 	.feature-section {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 60% 40%;
+		/* Allocate 60% to text, 40% to image */
 		align-items: center;
 		/* Vertically align text and images */
 		gap: 40px;
@@ -120,10 +120,8 @@
 
 	.feature-image img {
 		width: 100%;
-		/* Make images responsive */
-		max-width: 700px;
-		/* Limit image size */
+		/* Image takes full width of its column */
+		height: auto;
+		/* Maintain aspect ratio */
 		display: block;
-		margin: 0 auto;
-		/* Center the image within its column */
 	}
