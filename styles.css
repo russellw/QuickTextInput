@@ -102,9 +102,7 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 20px;
-		/* Space between each feature section */
 		max-width: 1000px;
-		/* Control the overall width of the feature container */
 		margin: 0 auto;
 		/* Center the feature container on the page */
 		padding: 0 20px;
@@ -114,7 +112,6 @@
 	.feature-section {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		/* Two equal-width columns */
 		align-items: center;
 		/* Vertically align text and images */
 		gap: 40px;
@@ -124,7 +121,7 @@
 	.feature-image img {
 		width: 100%;
 		/* Make images responsive */
-		max-width: 300px;
+		max-width: 700px;
 		/* Limit image size */
 		display: block;
 		margin: 0 auto;
