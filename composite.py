@@ -4,7 +4,7 @@ import sys
 
 from PIL import Image
 
-x = 500
+x = 400
 y = 200
 files = [
     ["partial.png", None, "partial.png"],
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     for iio in files:
         input1, input2, output = iio
         input1 = os.path.join("screenshots", input1)
-        output = os.path.join("composite", output)
+        output = os.path.join("site", output)
         if input2:
             input2 = os.path.join("screenshots", input2)
             width1, height1 = get_image_size(input2)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     for iio in files:
         input1, input2, output = iio
         input1 = os.path.join("screenshots", input1)
-        output = os.path.join("composite", output)
+        output = os.path.join("site", output)
         if input2:
             input2 = os.path.join("screenshots", input2)
         comp(input1, input2, output)
