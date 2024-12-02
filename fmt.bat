@@ -10,7 +10,7 @@ call js-beautify --end-with-newline -t index.html -r||exit /b
 sort-html-attrs -w index.html||exit /b
 
 rem CSS
-css-comment -w styles.css
+css-comment -w styles.css||exit /b
 call js-beautify --end-with-newline -t styles.css -r||exit /b
 
 git diff

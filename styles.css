@@ -100,19 +100,19 @@ nav a:hover {
 	grid-template-columns: 1fr;
 	gap: 20px;
 	max-width: 1000px;
-	margin: 0 auto;
 	/* Center the feature container */
-	padding: 0 20px;
+	margin: 0 auto;
 	/* Add padding for small screens */
+	padding: 0 20px;
 }
 
 .feature {
 	display: grid;
 	grid-template-columns: 60% 40%;
-	align-items: center;
 	/* Vertically align text and images */
-	gap: 40px;
+	align-items: center;
 	/* Space between text and image */
+	gap: 40px;
 }
 
 .feature-image {
