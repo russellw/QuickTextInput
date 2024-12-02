@@ -118,6 +118,4 @@
 	.feature-image img {
 		width: 100%;
 		/* Image takes full width of its column */
-		height: auto;
-		/* Maintain aspect ratio */
 	}
