@@ -4,7 +4,7 @@
 		line-height: 1.5;
 	}
 
-	/* header section */
+	/* header */
 	.logo {
 		height: 30px;
 		margin-right: 20px;
@@ -99,9 +99,7 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 20px;
-		/* Space between each feature section */
 		max-width: 1000px;
-		/* Control the overall width */
 		margin: 0 auto;
 		/* Center the feature container */
 		padding: 0 20px;
@@ -111,7 +109,6 @@
 	.feature {
 		display: grid;
 		grid-template-columns: 60% 40%;
-		/* Allocate 60% to text, 40% to image */
 		align-items: center;
 		/* Vertically align text and images */
 		gap: 40px;
