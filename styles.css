@@ -120,5 +120,4 @@
 		/* Image takes full width of its column */
 		height: auto;
 		/* Maintain aspect ratio */
-		display: block;
 	}
