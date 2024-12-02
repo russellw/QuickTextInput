@@ -1,1 +1,1 @@
-upload-s3 quicktextinput.com index.html
+upload-s3 quicktextinput.com site\index.html
