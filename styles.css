@@ -4,7 +4,7 @@ body {
 	line-height: 1.5;
 }
 
-/* header */
+/* Header */
 .logo {
 	height: 30px;
 	margin-right: 20px;
@@ -32,7 +32,7 @@ nav a:hover {
 	color: blue;
 }
 
-/* hero section */
+/* Hero section */
 .hero {
 	display: flex;
 	align-items: center;
@@ -94,7 +94,7 @@ nav a:hover {
 	border-radius: 10px;
 }
 
-/* features */
+/* Features */
 .features {
 	display: grid;
 	grid-template-columns: 1fr;
