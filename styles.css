@@ -115,7 +115,7 @@
 		/* Space between text and image */
 	}
 
-	.feature-image img {
+	.feature-image {
+		//stay confined to prescribed width
 		width: 100%;
-		/* Image takes full width of its column */
 	}
