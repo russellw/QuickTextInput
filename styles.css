@@ -108,7 +108,7 @@
 		/* Add padding for small screens */
 	}
 
-	.feature-section {
+	.feature {
 		display: grid;
 		grid-template-columns: 60% 40%;
 		/* Allocate 60% to text, 40% to image */
