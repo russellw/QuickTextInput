@@ -5,7 +5,7 @@ import sys
 from PIL import Image
 
 x = 400
-y = 200
+y = 400
 files = [
     ["partial.png", None, "partial.png"],
     ["full.png", "np.png", "full.png"],
