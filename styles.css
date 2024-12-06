@@ -32,19 +32,18 @@ nav a:hover {
 	color: blue;
 }
 
-/* Hero section */
-.hero {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 60px 10%;
-	background-color: #f4f4f4;
-	color: #333;
+/* Grid */
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	padding: 20px;
 }
 
-.hero-content {
-	flex: 1;
-	max-width: 50%;
+/* Hero section */
+.hero {
+	display: contents;
+	background-color: #4CAF50;
 }
 
 .hero-content h1 {
@@ -88,34 +87,8 @@ nav a:hover {
 	background-color: #7f8c8d;
 }
 
-.hero-img {
-	width: 100%;
-	max-width: 640px;
-	border-radius: 10px;
-}
-
 /* Features */
-.features {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 20px;
-	max-width: 1400px;
-	/* Center the feature container */
-	margin: 0 auto;
-	/* Add padding for small screens */
-	padding: 0 20px;
-}
-
-.feature {
-	display: grid;
-	grid-template-columns: 40% 60%;
-	/* Vertically align text and images */
-	align-items: center;
-	/* Space between text and image */
-	gap: 40px;
-}
-
-.feature-img {
+img {
 	/* Stay confined to prescribed width */
 	width: 100%;
 }
