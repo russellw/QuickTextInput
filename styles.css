@@ -53,12 +53,6 @@ nav a:hover {
 	margin-bottom: 30px;
 }
 
-.cta-buttons {
-	display: flex;
-	gap: 20px;
-}
-
-
 img {
 	width: 100%;
 }
