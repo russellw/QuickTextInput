@@ -4,7 +4,6 @@ body {
 	line-height: 1.5;
 }
 
-/* Header */
 .logo {
 	height: 30px;
 	margin-right: 20px;
@@ -32,7 +31,6 @@ nav a:hover {
 	color: blue;
 }
 
-/* Grid */
 .container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -40,7 +38,6 @@ nav a:hover {
 	padding: 20px;
 }
 
-/* Hero section */
 .hero {
 	display: contents;
 	background-color: #4CAF50;
@@ -61,34 +58,7 @@ nav a:hover {
 	gap: 20px;
 }
 
-.btn {
-	text-decoration: none;
-	padding: 12px 24px;
-	font-size: 16px;
-	border-radius: 5px;
-	transition: background-color 0.3s;
-}
 
-.btn-primary {
-	background-color: #3498db;
-	color: white;
-}
-
-.btn-primary:hover {
-	background-color: #2980b9;
-}
-
-.btn-secondary {
-	background-color: #95a5a6;
-	color: white;
-}
-
-.btn-secondary:hover {
-	background-color: #7f8c8d;
-}
-
-/* Features */
 img {
-	/* Stay confined to prescribed width */
 	width: 100%;
 }
