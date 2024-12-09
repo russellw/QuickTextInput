@@ -15,8 +15,12 @@ svg {
 }
 
 header {
-	text-align: center;
-	padding: 20px 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	background-color: #f8f9fa;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
