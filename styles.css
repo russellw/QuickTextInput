@@ -11,31 +11,30 @@ body {
 
 svg {
 	height: 30px;
-	margin-right: 20px;
 }
 
 header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem; 
+	gap: 1rem;
 	padding: 1rem;
 	background-color: #f8f9fa;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav ul {
-	list-style: none;
-	display: flex;
-	gap: 20px;
-}
-
-nav a {
-	color: black;
+header a {
 	text-decoration: none;
+	color: black;
 }
 
-nav a:hover {
+header a:first-child {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+header a:hover {
 	color: blue;
 }
 
