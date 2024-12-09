@@ -43,21 +43,6 @@ header a:hover {
 	padding: 20px;
 }
 
-.hero {
-	display: contents;
-	background-color: #4CAF50;
-}
-
-.hero-content h1 {
-	font-size: 48px;
-	margin-bottom: 20px;
-}
-
-.hero-content p {
-	font-size: 18px;
-	margin-bottom: 30px;
-}
-
 img {
 	width: 100%;
 }
