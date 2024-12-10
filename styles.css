@@ -54,3 +54,31 @@ header a:hover {
 img {
 	width: 100%;
 }
+
+input,
+textarea {
+	border-radius: 5px;
+	border: 1px outset #ccc;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+	font-size: 18px;
+	margin-bottom: 15px;
+	margin-top: 0;
+	padding: 10px;
+	transition: box-shadow 0.3s ease;
+	width: 90%;
+}
+
+textarea {
+	height: 100px;
+}
+
+input[type="submit"] {
+	background-color: #000;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 10px 20px;
+	transition: background-color 0.3s ease;
+}
