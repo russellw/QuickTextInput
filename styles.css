@@ -7,6 +7,7 @@ body {
 	font-family: Arial, sans-serif;
 	font-size: 18px;
 	line-height: 1.5;
+	margin: 30px;
 }
 
 svg {
@@ -17,7 +18,6 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 20px;
 }
 
 header div {
@@ -48,7 +48,6 @@ header a:hover {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 50px;
-	padding: 20px;
 }
 
 img {
