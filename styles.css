@@ -17,8 +17,8 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
-	padding: 1rem;
+	gap: 30px;
+	padding: 20px;
 }
 
 header a {
@@ -29,7 +29,8 @@ header a {
 header a:first-child {
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 10px;
+	margin-right: 100px;
 }
 
 header a:hover {
