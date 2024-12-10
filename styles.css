@@ -7,7 +7,7 @@ body {
 	font-family: Arial, sans-serif;
 	font-size: 18px;
 	line-height: 1.5;
-	margin: 30px;
+	margin: GAP;
 }
 
 svg {
@@ -47,7 +47,8 @@ header a:hover {
 .container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 50px;
+	gap: GAP;
+	margin: GAP 0;
 }
 
 img {
