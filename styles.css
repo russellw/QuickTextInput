@@ -24,6 +24,7 @@ header div {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
+	align-items: center;
 	display: flex;
 	gap: 30px;
 }
