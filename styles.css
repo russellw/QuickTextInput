@@ -59,11 +59,16 @@ input,
 textarea {
 	border-radius: 5px;
 	border: 1px outset #ccc;
-	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 	font-size: 18px;
 	margin: 0 0 15px;
 	padding: 10px;
 	width: 90%;
+}
+input:focus,textarea:focus {
+	border: 1px outset #ccf;
+	outline: none;
+	box-shadow: 1px 1px 3px rgba(0, 0, 255, 0.5);
 }
 
 textarea {
