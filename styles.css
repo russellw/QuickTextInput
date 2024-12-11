@@ -63,7 +63,6 @@ textarea {
 	font-size: 18px;
 	margin: 0 0 15px;
 	padding: 10px;
-	transition: box-shadow 0.3s ease;
 	width: 90%;
 }
 
@@ -75,5 +74,4 @@ input[type="submit"] {
 	border: none;
 	cursor: pointer;
 	padding: 10px 20px;
-	transition: background-color 0.3s ease;
 }
