@@ -73,9 +73,7 @@ textarea {
 }
 
 input[type="submit"] {
-	background-color: #000;
 	border: none;
-	color: #fff;
 	cursor: pointer;
 	padding: 10px 20px;
 	transition: background-color 0.3s ease;
