@@ -65,7 +65,9 @@ textarea {
 	padding: 10px;
 	width: 90%;
 }
-input:focus,textarea:focus {
+
+input:focus,
+textarea:focus {
 	border: 1px outset #ccf;
 	outline: none;
 	box-shadow: 1px 1px 3px rgba(0, 0, 255, 0.5);
