@@ -81,4 +81,9 @@ input[type="submit"] {
 	border: none;
 	cursor: pointer;
 	padding: 10px 20px;
+	background-color: #eee;
+}
+
+input[type="submit"]:hover {
+	background-color: #ddd;
 }
