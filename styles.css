@@ -96,7 +96,6 @@ input[type="submit"]:hover {
   border-radius: ROUNDING; 
   text-decoration: none; /* Remove underline */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth hover effects */
 	width: BUTTON_WIDTH;
 	text-align: center;
 }
