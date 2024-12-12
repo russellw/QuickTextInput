@@ -77,11 +77,15 @@ textarea {
 	height: 100px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+.cta-button {
 	width: BUTTON_WIDTH;
+  padding: BUTTON_PADDING; 
+}
+
+input[type="submit"] {
 	border: none;
 	cursor: pointer;
-	padding: BUTTON_PADDING;
 	background-color: #f0f0f0;
 }
 
@@ -92,11 +96,9 @@ input[type="submit"]:hover {
   display: block;
   background-color: #007BFF; /* A vibrant color */
   color: white;
-  padding: BUTTON_PADDING; 
   border-radius: ROUNDING; 
   text-decoration: none; /* Remove underline */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-	width: BUTTON_WIDTH;
 	text-align: center;
 }
 
