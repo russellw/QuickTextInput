@@ -89,7 +89,7 @@ input[type="submit"]:hover {
 	background-color: #e8e8e8;
 }
 .cta-button {
-  display: inline-block;
+  display: block;
   background-color: #007BFF; /* A vibrant color */
   color: white;
   padding: BUTTON_PADDING; 
