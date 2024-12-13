@@ -96,6 +96,7 @@ input[type="submit"]:hover {
 }
 
 .cta-button {
+	box-sizing: border-box;
 	display: block;
 	background-color: hsl(210, 100%, 50%);
 	color: white;
