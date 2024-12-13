@@ -110,6 +110,6 @@ input[type="submit"]:hover {
 .cta-button:active ,
 input[type="submit"]:active
 {
-  transform: translate(2px, 2px);
+  transform: translate(1px, 1px);
   box-shadow: none;
 }
