@@ -36,7 +36,7 @@ header a {
 	color: inherit;
 }
 
-header>:first-child {
+.logo-name {
 	display: flex;
 	align-items: center;
 	gap: 10px;
