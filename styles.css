@@ -9,7 +9,7 @@ body {
 	line-height: 1.5;
 	margin: GAP;
 	background-color: hsl(0, 0%, 95%);
-	color:hsl(0, 0%, 0%);
+	color: hsl(0, 0%, 0%);
 }
 
 svg {
@@ -82,7 +82,7 @@ textarea {
 input[type="submit"],
 .cta-button {
 	width: BUTTON_WIDTH;
-  padding: BUTTON_PADDING; 
+	padding: BUTTON_PADDING;
 }
 
 input[type="submit"] {
@@ -94,27 +94,27 @@ input[type="submit"] {
 input[type="submit"]:hover {
 	background-color: hsl(0, 0%, 75%);
 }
+
 .cta-button {
-  display: block;
-  background-color:hsl(210, 100%, 50%);
-  color: white;
-  border-radius: ROUNDING; 
-  text-decoration: none; 
+	display: block;
+	background-color: hsl(210, 100%, 50%);
+	color: white;
+	border-radius: ROUNDING;
+	text-decoration: none;
 	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 	text-align: center;
 }
 
 .cta-button:hover {
-  background-color: hsl(210, 100%, 40%);
+	background-color: hsl(210, 100%, 40%);
 }
 
-
-.cta-button:active ,
-input[type="submit"]:active
-{
-  transform: translate(1px, 1px);
-  box-shadow: none;
+.cta-button:active,
+input[type="submit"]:active {
+	transform: translate(1px, 1px);
+	box-shadow: none;
 }
+
 .email {
-    color:hsl(240, 100%, 50%);
+	color: hsl(240, 100%, 50%);
 }
