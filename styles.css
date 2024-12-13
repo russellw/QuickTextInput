@@ -60,7 +60,7 @@ img {
 input,
 textarea {
 	border-radius: ROUNDING;
-	border: 1px outset #ccc;
+	border: 1px outset #c8c8c8;
 	box-shadow: SHADOW_SIZE rgba(0, 0, 0, 0.5);
 	font-size: 18px;
 	margin: 0 0 15px;
