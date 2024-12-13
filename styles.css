@@ -8,8 +8,8 @@ body {
 	font-size: FONT_SIZE;
 	line-height: 1.5;
 	margin: GAP;
-	background-color: #f8f8f8;
-	color:#000;
+	background-color: hsl(0, 0%, 93%);
+	color:hsl(0, 0%, 0%);
 }
 
 svg {
