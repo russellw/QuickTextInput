@@ -115,3 +115,6 @@ input[type="submit"]:active
   transform: translate(1px, 1px);
   box-shadow: none;
 }
+.email {
+    color:hsl(240, 100%, 50%);
+}
