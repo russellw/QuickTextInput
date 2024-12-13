@@ -43,7 +43,7 @@ header>:first-child {
 }
 
 header a:hover {
-	color: hsl(210, 100%, 50%);
+	color: hsl(240, 100%, 50%);
 }
 
 .container {
@@ -60,7 +60,7 @@ img {
 input,
 textarea {
 	border-radius: ROUNDING;
-	border: 1px outset #c0c0c0;
+	border: 1px outset hsl(0, 0%, 75%);
 	box-shadow: SHADOW_SIZE rgba(0, 0, 0, 0.5);
 	font-size: FONT_SIZE;
 	margin: 0 0 15px;
