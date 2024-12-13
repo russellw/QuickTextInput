@@ -70,7 +70,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-	border: 1px outset hsl(240, 100%, 50%);
+	border: 1px outset hsl(240, 100%, 75%);
 	outline: none;
 	box-shadow: SHADOW_SIZE hsla(240, 100%, 50%, 0.5);
 }
