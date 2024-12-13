@@ -88,11 +88,11 @@ input[type="submit"],
 input[type="submit"] {
 	border: none;
 	cursor: pointer;
-	background-color: #f0f0f0;
+	background-color: hsl(0, 0%, 85%);
 }
 
 input[type="submit"]:hover {
-	background-color: #e8e8e8;
+	background-color: hsl(0, 0%, 75%);
 }
 .cta-button {
   display: block;
@@ -105,7 +105,7 @@ input[type="submit"]:hover {
 }
 
 .cta-button:hover {
-  background-color: hsl(210, 100%, 45%);
+  background-color: hsl(210, 100%, 40%);
 }
 
 
