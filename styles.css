@@ -43,7 +43,7 @@ header>:first-child {
 }
 
 header a:hover {
-	color: blue;
+	color: hsl(210, 100%, 50%);
 }
 
 .container {
