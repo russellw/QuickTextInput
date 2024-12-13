@@ -100,7 +100,7 @@ input[type="submit"]:hover {
   color: white;
   border-radius: ROUNDING; 
   text-decoration: none; 
-	box-shadow: SHADOW_SIZE rgba(0, 0, 0, 0.5);
+	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 	text-align: center;
 }
 
