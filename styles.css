@@ -61,7 +61,7 @@ input,
 textarea {
 	border-radius: ROUNDING;
 	border: 1px outset hsl(0, 0%, 75%);
-	box-shadow: SHADOW_SIZE rgba(0, 0, 0, 0.5);
+	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 	font-size: FONT_SIZE;
 	margin: 0 0 15px;
 	padding: 10px;
@@ -70,9 +70,9 @@ textarea {
 
 input:focus,
 textarea:focus {
-	border: 1px outset #ccf;
+	border: 1px outset hsl(240, 100%, 50%);
 	outline: none;
-	box-shadow: SHADOW_SIZE rgba(0, 0, 255, 0.5);
+	box-shadow: SHADOW_SIZE hsla(240, 100%, 50%, 0.5);
 }
 
 textarea {
