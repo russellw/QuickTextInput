@@ -52,13 +52,14 @@ input[type="submit"]:active {
 		margin: GAP 0;
 	}
 
+	.cta-button,
+	input[type="submit"] {
+		width: BUTTON_WIDTH;
+	}
+
 	body {
 		margin: GAP;
 	}
-.cta-button ,
-input[type="submit"] {
-	width: BUTTON_WIDTH;
-}
 }
 
 body {
