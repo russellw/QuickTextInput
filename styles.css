@@ -35,12 +35,22 @@ input[type="submit"]:active {
 	gap: 10px;
 }
 
+@media (max-width: 999px) {
+	body {
+		margin: 0;
+	}
+}
+
 @media (min-width: 1000px) {
 	.container {
 		display: grid;
 		gap: GAP;
 		grid-template-columns: 1fr 1fr;
 		margin: GAP 0;
+	}
+
+	body {
+		margin: GAP;
 	}
 }
 
@@ -50,7 +60,6 @@ body {
 	font-family: Arial, sans-serif;
 	font-size: FONT_SIZE;
 	line-height: 1.5;
-	margin: GAP;
 }
 
 footer {
