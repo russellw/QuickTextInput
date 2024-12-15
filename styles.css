@@ -135,7 +135,7 @@ textarea {
 
 	input[type="submit"],
 	.cta-button {
-		width: BUTTON_WIDTH;
+		width: 50%;
 	}
 
 	.container {
