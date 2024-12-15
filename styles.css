@@ -12,7 +12,6 @@
 .cta-button,
 input[type="submit"] {
 	padding: BUTTON_PADDING;
-	width: BUTTON_WIDTH;
 }
 
 .cta-button:active,
@@ -56,6 +55,10 @@ input[type="submit"]:active {
 	body {
 		margin: GAP;
 	}
+.cta-button ,
+input[type="submit"] {
+	width: BUTTON_WIDTH;
+}
 }
 
 body {
