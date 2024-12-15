@@ -42,6 +42,11 @@ input[type="submit"]:active {
 	body {
 		margin: 0;
 	}
+
+	input,
+	textarea {
+		width: 100%;
+	}
 }
 
 @media (min-width: 1000px) {
@@ -59,6 +64,11 @@ input[type="submit"]:active {
 
 	body {
 		margin: GAP;
+	}
+
+	input,
+	textarea {
+		width: 90%;
 	}
 }
 
@@ -108,10 +118,10 @@ textarea {
 	border-radius: ROUNDING;
 	border: 1px outset hsl(0, 0%, 75%);
 	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
+	box-sizing: border-box;
 	font-size: FONT_SIZE;
 	margin: 0 0 15px;
 	padding: 10px;
-	width: 90%;
 }
 
 input:focus,
