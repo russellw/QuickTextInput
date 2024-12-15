@@ -5,13 +5,9 @@
 	box-sizing: border-box;
 	color: white;
 	display: block;
+	padding: BUTTON_PADDING;
 	text-align: center;
 	text-decoration: none;
-}
-
-.cta-button,
-input[type="submit"] {
-	padding: BUTTON_PADDING;
 }
 
 .cta-button:active,
@@ -135,6 +131,7 @@ input[type="submit"] {
 	background-color: hsl(0, 0%, 85%);
 	border: none;
 	cursor: pointer;
+	padding: BUTTON_PADDING;
 }
 
 input[type="submit"]:hover {
