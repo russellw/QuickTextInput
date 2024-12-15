@@ -1,56 +1,83 @@
+.container {
+	display: grid;
+	gap: GAP;
+	grid-template-columns: 1fr 1fr;
+	margin: GAP 0;
+}
+
+.cta-button {
+	background-color: hsl(210, 100%, 50%);
+	border-radius: ROUNDING;
+	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
+	box-sizing: border-box;
+	color: white;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+}
+
+.cta-button,
+input[type="submit"] {
+	padding: BUTTON_PADDING;
+	width: BUTTON_WIDTH;
+}
+
+.cta-button:active,
+input[type="submit"]:active {
+	box-shadow: none;
+	transform: translate(1px, 1px);
+}
+
+.cta-button:hover {
+	background-color: hsl(210, 100%, 40%);
+}
+
+.email {
+	color: hsl(240, 100%, 50%);
+}
+
+.logo-name {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+}
+
+body {
+	background-color: hsl(0, 0%, 95%);
+	color: hsl(0, 0%, 0%);
+	font-family: Arial, sans-serif;
+	font-size: FONT_SIZE;
+	line-height: 1.5;
+	margin: GAP;
+}
+
 footer {
 	opacity: 0.75;
 	text-align: center;
 }
 
-body {
-	font-family: Arial, sans-serif;
-	font-size: FONT_SIZE;
-	line-height: 1.5;
-	margin: GAP;
-	background-color: hsl(0, 0%, 95%);
-	color: hsl(0, 0%, 0%);
-}
-
-svg {
-	height: 30px;
-}
-
 header {
-	display: flex;
 	align-items: center;
+	display: flex;
 	justify-content: space-between;
 }
 
-header div {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	align-items: center;
-	display: flex;
-	gap: 30px;
-}
-
 header a {
-	text-decoration: none;
 	color: inherit;
-}
-
-.logo-name {
-	display: flex;
-	align-items: center;
-	gap: 10px;
+	text-decoration: none;
 }
 
 header a:hover {
 	color: hsl(240, 100%, 50%);
 }
 
-.container {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: GAP;
-	margin: GAP 0;
+header div {
+	align-items: center;
+	display: flex;
+	gap: 30px;
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
 }
 
 img {
@@ -71,51 +98,24 @@ textarea {
 input:focus,
 textarea:focus {
 	border: 1px outset hsl(240, 100%, 75%);
-	outline: none;
 	box-shadow: SHADOW_SIZE hsla(240, 100%, 50%, 0.5);
-}
-
-textarea {
-	height: 100px;
-}
-
-input[type="submit"],
-.cta-button {
-	width: BUTTON_WIDTH;
-	padding: BUTTON_PADDING;
+	outline: none;
 }
 
 input[type="submit"] {
+	background-color: hsl(0, 0%, 85%);
 	border: none;
 	cursor: pointer;
-	background-color: hsl(0, 0%, 85%);
 }
 
 input[type="submit"]:hover {
 	background-color: hsl(0, 0%, 75%);
 }
 
-.cta-button {
-	box-sizing: border-box;
-	display: block;
-	background-color: hsl(210, 100%, 50%);
-	color: white;
-	border-radius: ROUNDING;
-	text-decoration: none;
-	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
-	text-align: center;
+svg {
+	height: 30px;
 }
 
-.cta-button:hover {
-	background-color: hsl(210, 100%, 40%);
-}
-
-.cta-button:active,
-input[type="submit"]:active {
-	transform: translate(1px, 1px);
-	box-shadow: none;
-}
-
-.email {
-	color: hsl(240, 100%, 50%);
+textarea {
+	height: 100px;
 }
