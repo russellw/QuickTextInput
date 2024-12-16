@@ -26,7 +26,7 @@ header a:hover {
 	color: hsl(240, 100%, 50%);
 }
 
-header div {
+#header-menu {
 	align-items: center;
 	display: flex;
 	gap: 30px;
@@ -116,7 +116,9 @@ textarea {
 	textarea {
 		width: 100%;
 	}
-
+#header-menu{
+	display:none;
+}
 	.container>div {
 		margin: 0 10px;
 	}
@@ -136,6 +138,9 @@ textarea {
 	.cta-button {
 		width: 50%;
 	}
+#burger{
+	display:none;
+}
 
 	.container {
 		display: grid;
