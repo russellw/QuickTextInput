@@ -97,14 +97,14 @@ textarea {
 	background-color: hsl(210, 100%, 40%);
 }
 
-.mailto {
-	color: hsl(240, 100%, 50%);
-}
-
 .logo-name {
 	align-items: center;
 	display: flex;
 	gap: 10px;
+}
+
+.mailto {
+	color: hsl(240, 100%, 50%);
 }
 
 @media (max-width: 999px) {
