@@ -26,15 +26,6 @@ header a:hover {
 	color: hsl(240, 100%, 50%);
 }
 
-#header-menu {
-	align-items: center;
-	display: flex;
-	gap: 30px;
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
-}
-
 img {
 	width: 100%;
 }
@@ -116,11 +107,13 @@ textarea {
 	textarea {
 		width: 100%;
 	}
-#header-menu{
-	display:none;
-}
+
 	.container>div {
 		margin: 0 10px;
+	}
+
+	#header-menu {
+		display: none;
 	}
 }
 
@@ -138,9 +131,6 @@ textarea {
 	.cta-button {
 		width: 50%;
 	}
-#burger{
-	display:none;
-}
 
 	.container {
 		display: grid;
@@ -148,4 +138,17 @@ textarea {
 		grid-template-columns: 1fr 1fr;
 		margin: GAP 0;
 	}
+
+	#burger {
+		display: none;
+	}
+}
+
+#header-menu {
+	align-items: center;
+	display: flex;
+	gap: 30px;
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
 }
