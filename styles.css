@@ -124,7 +124,6 @@ textarea {
 
 	#burger-menu {
 		background-color: LIGHT_MODE_BACKGROUND;
-		border-radius: ROUNDING;
 		border: 1px outset hsl(0, 0%, 75%);
 		box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 		display: none;
