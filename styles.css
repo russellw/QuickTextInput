@@ -121,7 +121,11 @@ textarea {
 		margin: 0 10px;
 	}
 
-	#burger-menu,
+	#burger-menu {
+		display: none;
+		position: absolute;
+	}
+
 	#header-menu {
 		display: none;
 	}
