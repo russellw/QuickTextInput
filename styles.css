@@ -123,9 +123,11 @@ textarea {
 	}
 
 	#burger-menu {
+		background-color: LIGHT_MODE_BACKGROUND;
 		display: none;
+		padding: 10px;
 		position: absolute;
-		right: 10px;
+		right: 0;
 	}
 
 	#burger-menu a {
