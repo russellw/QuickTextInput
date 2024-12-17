@@ -98,15 +98,6 @@ textarea {
 	color: hsl(240, 100%, 50%);
 }
 
-#header-menu {
-	align-items: center;
-	display: flex;
-	gap: 30px;
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
-}
-
 @media (max-width: 999px) {
 	body {
 		margin: 0;
@@ -124,7 +115,11 @@ textarea {
 	#burger-menu {
 		display: none;
 		position: absolute;
-		right: 0;
+		right: 10px;
+	}
+
+	#burger-menu a {
+		display: block;
 	}
 
 	#header-menu {
@@ -156,5 +151,14 @@ textarea {
 
 	#burger {
 		display: none;
+	}
+
+	#header-menu {
+		align-items: center;
+		display: flex;
+		gap: 30px;
+		left: 50%;
+		position: absolute;
+		transform: translateX(-50%);
 	}
 }
