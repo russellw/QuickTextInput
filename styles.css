@@ -124,10 +124,10 @@ textarea {
 
 	#burger-menu {
 		background-color: LIGHT_MODE_BACKGROUND;
-		border: 1px hsl(0, 0%, 25%);
-		border-top-style: outset ;
-		border-left-style: outset ;
-		border-bottom-style: outset ;
+		border-bottom-style: outset;
+		border-left-style: outset;
+		border-top-style: outset;
+		border: 1px hsl(0, 0%, 75%);
 		box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 		display: none;
 		line-height: 2.5;
