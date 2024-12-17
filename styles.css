@@ -1,5 +1,5 @@
 body {
-	background-color: hsl(0, 0%, 95%);
+	background-color: LIGHT_MODE_BACKGROUND;
 	color: hsl(0, 0%, 0%);
 	font-family: Arial, sans-serif;
 	font-size: FONT_SIZE;
@@ -104,6 +104,7 @@ textarea {
 	}
 
 	header {
+		background-color: LIGHT_MODE_BACKGROUND;
 		position: sticky;
 		top: 0;
 	}
