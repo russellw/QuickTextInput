@@ -132,6 +132,7 @@ textarea {
 		padding: 10px 25px;
 		position: absolute;
 		right: 0;
+		top: 100%;
 	}
 
 	#burger-menu a {
