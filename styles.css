@@ -129,7 +129,7 @@ textarea {
 		box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 		display: none;
 		line-height: 2.5;
-		padding: 15px 30px;
+		padding: 10px 25px;
 		position: absolute;
 		right: 0;
 	}
