@@ -124,6 +124,7 @@ textarea {
 	#burger-menu {
 		display: none;
 		position: absolute;
+		right: 0;
 	}
 
 	#header-menu {
