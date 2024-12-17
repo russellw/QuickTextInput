@@ -112,6 +112,10 @@ textarea {
 		margin: 0 10px;
 	}
 
+	#burger {
+		margin: 10px;
+	}
+
 	#burger-menu {
 		display: none;
 		position: absolute;
