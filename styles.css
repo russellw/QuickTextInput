@@ -98,7 +98,43 @@ textarea {
 	color: hsl(240, 100%, 50%);
 }
 
-@media (max-width: 999px) {
+@media (orientation: landscape) {
+	body {
+		margin: GAP;
+	}
+
+	input,
+	textarea {
+		width: 90%;
+	}
+
+	input[type="submit"],
+	.cta-button {
+		width: 50%;
+	}
+
+	.container {
+		display: grid;
+		gap: GAP;
+		grid-template-columns: 1fr 1fr;
+		margin: GAP 0;
+	}
+
+	#burger {
+		display: none;
+	}
+
+	#header-menu {
+		align-items: center;
+		display: flex;
+		gap: 30px;
+		left: 50%;
+		position: absolute;
+		transform: translateX(-50%);
+	}
+}
+
+@media (orientation: portrait) {
 	body {
 		margin: 0;
 	}
@@ -148,41 +184,5 @@ textarea {
 
 	#header-menu {
 		display: none;
-	}
-}
-
-@media (min-width: 1000px) {
-	body {
-		margin: GAP;
-	}
-
-	input,
-	textarea {
-		width: 90%;
-	}
-
-	input[type="submit"],
-	.cta-button {
-		width: 50%;
-	}
-
-	.container {
-		display: grid;
-		gap: GAP;
-		grid-template-columns: 1fr 1fr;
-		margin: GAP 0;
-	}
-
-	#burger {
-		display: none;
-	}
-
-	#header-menu {
-		align-items: center;
-		display: flex;
-		gap: 30px;
-		left: 50%;
-		position: absolute;
-		transform: translateX(-50%);
 	}
 }
