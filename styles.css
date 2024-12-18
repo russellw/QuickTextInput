@@ -21,7 +21,7 @@ header a {
 	color: inherit;
 	text-decoration: none;
 }
-
+.mailto,
 header a:hover {
 	color: hsl(240, 100%, 50%);
 }
@@ -94,9 +94,6 @@ textarea {
 	gap: 10px;
 }
 
-.mailto {
-	color: hsl(240, 100%, 50%);
-}
 
 @media (orientation: landscape) {
 	body {
@@ -199,8 +196,9 @@ textarea {
 		background-color: DARK_MODE_BACKGROUND;
 	}
 
+.mailto ,
 	header a:hover {
-		color: hsl(240, 100%, 80%);
+		color: hsl(210, 100%, 75%);
 	}
 
 	input,
