@@ -196,7 +196,9 @@ textarea {
 		background-color: DARK_MODE_BACKGROUND;
 	}
 
-
+.lumagraph-logo path {
+    fill: currentColor;
+}
 	header a:hover {
 		color: hsl(240, 100%, 80%);
 	}
