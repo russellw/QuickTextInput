@@ -188,10 +188,10 @@ textarea {
 }
 @media (prefers-color-scheme: dark) {
 	body {
-		background-color: DARK_MODE_BACKGROUND;
 		color: hsl(0, 0%, 95%);
 	}
-
+body,
+	#burger-menu ,
 	header {
 		background-color: DARK_MODE_BACKGROUND;
 	}
