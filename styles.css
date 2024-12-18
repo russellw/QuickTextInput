@@ -217,7 +217,6 @@ body,
 
 	input[type="submit"] {
 		background-color: hsl(0, 0%, 20%);
-		color: hsl(0, 0%, 95%);
 	}
 
 	input[type="submit"]:hover {
