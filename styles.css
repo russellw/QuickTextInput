@@ -130,15 +130,19 @@ textarea {
 		border: 1px hsl(0, 0%, 75%);
 		box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 		display: none;
-		line-height: 2.5;
-		padding: 10px 25px;
 		position: absolute;
 		right: 0;
 		top: 100%;
 	}
 
 	#burger-menu a {
+		border-bottom: 1px solid hsl(0, 0%, 80%);
 		display: block;
+		padding: 20px 30px;
+	}
+
+	#burger-menu a:last-child {
+		border-bottom: none;
 	}
 
 	#header-menu {
