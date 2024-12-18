@@ -136,7 +136,7 @@ textarea {
 	}
 
 	#burger-menu a {
-		border-bottom: 1px solid hsl(0, 0%, 80%);
+		border-bottom: 1px groove hsl(0, 0%, 80%);
 		display: block;
 		padding: 20px 30px;
 	}
