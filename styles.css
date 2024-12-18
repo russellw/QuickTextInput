@@ -206,16 +206,8 @@ textarea {
 
 	input,
 	textarea {
-		background-color: hsl(0, 0%, 20%);
-		border: 1px outset hsl(0, 0%, 35%);
-		box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.75);
-		color: hsl(0, 0%, 95%);
-	}
-
-	input:focus,
-	textarea:focus {
-		border: 1px outset hsl(240, 100%, 60%);
-		box-shadow: 1px 1px 3px hsla(240, 100%, 70%, 0.75);
+		background-color: hsl(0, 0%, 5%);
+		color: inherit;
 	}
 
 	input[type="submit"] {
