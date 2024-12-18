@@ -21,8 +21,9 @@ header a {
 	color: inherit;
 	text-decoration: none;
 }
-.mailto,
-header a:hover {
+
+header a:hover,
+.mailto {
 	color: hsl(240, 100%, 50%);
 }
 
@@ -94,6 +95,9 @@ textarea {
 	gap: 10px;
 }
 
+.lumagraph-logo path {
+	fill: currentColor;
+}
 
 @media (orientation: landscape) {
 	body {
@@ -183,29 +187,28 @@ textarea {
 		display: none;
 	}
 }
-.lumagraph-logo path {
-    fill: currentColor;
-}
+
 @media (prefers-color-scheme: dark) {
 	body {
 		color: hsl(0, 0%, 95%);
 	}
-body,
-	#burger-menu ,
-	header {
+
+	body,
+	header,
+	#burger-menu {
 		background-color: DARK_MODE_BACKGROUND;
 	}
 
-.mailto ,
-	header a:hover {
+	header a:hover,
+	.mailto {
 		color: hsl(210, 100%, 75%);
 	}
 
 	input,
 	textarea {
+		background-color: hsl(0, 0%, 20%);
 		border: 1px outset hsl(0, 0%, 35%);
 		box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.75);
-		background-color: hsl(0, 0%, 20%);
 		color: hsl(0, 0%, 95%);
 	}
 
@@ -223,10 +226,11 @@ body,
 		background-color: hsl(0, 0%, 15%);
 	}
 
+	#burger-menu {
+		border: 1px solid hsl(0, 0%, 40%);
+	}
+
 	#burger-menu a {
 		border-bottom: 1px solid hsl(0, 0%, 40%);
-	}
-	#burger-menu {
-		border: 1px  solid hsl(0, 0%, 40%);
 	}
 }
