@@ -186,3 +186,41 @@ textarea {
 		display: none;
 	}
 }
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: DARK_MODE_BACKGROUND;
+		color: hsl(0, 0%, 95%);
+	}
+
+	header {
+		background-color: DARK_MODE_BACKGROUND;
+	}
+
+
+	header a:hover {
+		color: hsl(240, 100%, 80%);
+	}
+
+	input,
+	textarea {
+		border: 1px outset hsl(0, 0%, 35%);
+		box-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.75);
+		background-color: hsl(0, 0%, 20%);
+		color: hsl(0, 0%, 95%);
+	}
+
+	input:focus,
+	textarea:focus {
+		border: 1px outset hsl(240, 100%, 60%);
+		box-shadow: 1px 1px 3px hsla(240, 100%, 70%, 0.75);
+	}
+
+	input[type="submit"] {
+		background-color: hsl(0, 0%, 20%);
+		color: hsl(0, 0%, 95%);
+	}
+
+	input[type="submit"]:hover {
+		background-color: hsl(0, 0%, 30%);
+	}
+}
