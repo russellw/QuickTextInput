@@ -223,4 +223,8 @@ body,
 	input[type="submit"]:hover {
 		background-color: hsl(0, 0%, 30%);
 	}
+
+	#burger-menu a {
+		border-bottom: 1px groove hsl(0, 0%, 20%);
+	}
 }
