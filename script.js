@@ -12,7 +12,7 @@ function toggleBurger() {
 document.getElementById('contactForm').addEventListener('submit', async (event) => {
 	event.preventDefault();
 	const formData = {
-		domain: 'quicktextinput.com',
+		domain: window.location.hostname,
 		email: document.getElementById('email').value,
 		message: document.getElementById('message').value
 	};
