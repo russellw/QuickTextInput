@@ -9,7 +9,7 @@ function toggleBurger() {
 		m.style.display = "none"
 	}
 }
-document.getElementById('contactForm').addEventListener('submit', async (event) => {
+document.getElementById('contact-form').addEventListener('submit', async (event) => {
 	event.preventDefault();
 	const formData = {
 		domain: window.location.hostname,
@@ -28,7 +28,7 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
 		if (!response.ok) {
 			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
-		document.getElementById('contactForm').reset();
+		document.getElementById('contact-form').reset();
 		r.textContent = 'Message sent.'
 	} catch (error) {
 		r.textContent = `${error}`
