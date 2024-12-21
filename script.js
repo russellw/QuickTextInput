@@ -9,6 +9,7 @@ function toggleBurger() {
 		m.style.display = "none"
 	}
 }
+
 async function handleSubmit(event) {
 	event.preventDefault();
 	const formData = {
