@@ -9,7 +9,7 @@ function toggleBurger() {
 		m.style.display = "none"
 	}
 }
-document.getElementById('contact-form').addEventListener('submit', async (event) => {
+async function handleSubmit(event) {
 	event.preventDefault();
 	const formData = {
 		domain: window.location.hostname,
@@ -33,4 +33,4 @@ document.getElementById('contact-form').addEventListener('submit', async (event)
 	} catch (error) {
 		r.textContent = `${error}`
 	}
-});
+}
