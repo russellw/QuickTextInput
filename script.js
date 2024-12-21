@@ -13,9 +13,7 @@ function toggleBurger() {
 		event.preventDefault(); 
 		const formData = {
 			domain: 'quicktextinput.com',
-			name: '',
 			email: document.getElementById('email').value,
-			phone:'',
 			message: document.getElementById('message').value
 		};
 	const r = document.getElementById("response")
