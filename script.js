@@ -18,8 +18,7 @@ function toggleBurger() {
 			phone:'',
 			message: document.getElementById('message').value
 		};
-alert(JSON.stringify(formData))
-
+	const r = document.getElementById("response")
 		try {
 			const response = await fetch("https://mapsyvgete.execute-api.eu-west-1.amazonaws.com/prod", {
 				method: "POST",
@@ -28,18 +27,12 @@ alert(JSON.stringify(formData))
 				},
 				body: JSON.stringify(formData)
 			});
-
-alert(response)
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-
-			const result = await response.json();
-			alert(result)
-			console.log("Success:", result);
-			// You can display a success message to the user here
+			document.getElementById('contactForm').reset();
+			r.textContent='Message sent.'
 		} catch (error) {
-			console.error("Error:", error);
-			// Display an error message to the user if needed
+			r.textContent=`${error}`
 		}
 	});
