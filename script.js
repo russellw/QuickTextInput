@@ -9,28 +9,28 @@ function toggleBurger() {
 		m.style.display = "none"
 	}
 }
-	document.getElementById('contactForm').addEventListener('submit', async (event) => {
-		event.preventDefault(); 
-		const formData = {
-			domain: 'quicktextinput.com',
-			email: document.getElementById('email').value,
-			message: document.getElementById('message').value
-		};
+document.getElementById('contactForm').addEventListener('submit', async (event) => {
+	event.preventDefault();
+	const formData = {
+		domain: 'quicktextinput.com',
+		email: document.getElementById('email').value,
+		message: document.getElementById('message').value
+	};
 	const r = document.getElementById("response")
-		try {
-			const response = await fetch("https://mapsyvgete.execute-api.eu-west-1.amazonaws.com/prod", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(formData)
-			});
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-			document.getElementById('contactForm').reset();
-			r.textContent='Message sent.'
-		} catch (error) {
-			r.textContent=`${error}`
+	try {
+		const response = await fetch("https://mapsyvgete.execute-api.eu-west-1.amazonaws.com/prod", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(formData)
+		});
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
-	});
+		document.getElementById('contactForm').reset();
+		r.textContent = 'Message sent.'
+	} catch (error) {
+		r.textContent = `${error}`
+	}
+});
