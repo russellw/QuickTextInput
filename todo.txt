@@ -14,9 +14,6 @@ Should it still be taking up the entire width of a widescreen anyway?
 If not, might it suffice to use the 640 version of the header image?
 
 
-Make the following changes to improve accessibility:
-serious Elements must have sufficient color contrast More info
-Fix any of the following: Element has insufficient color contrast of 3.83 (foreground color: #ffffff, background color: #007fff, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1<a class="b" href="#beta">Sign up for free beta</a>
 
 
 SEO summary text

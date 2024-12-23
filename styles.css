@@ -74,7 +74,7 @@ textarea {
 }
 
 .cta-button {
-	background-color: hsl(210, 100%, 50%);
+	background-color: hsl(210, 100%, 40%);
 	border-radius: ROUNDING;
 	box-shadow: SHADOW_SIZE hsla(0, 0%, 0%, 0.5);
 	box-sizing: border-box;
@@ -86,7 +86,7 @@ textarea {
 }
 
 .cta-button:hover {
-	background-color: hsl(210, 100%, 40%);
+	background-color: hsl(210, 100%, 30%);
 }
 
 .logo-name {
