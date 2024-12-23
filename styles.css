@@ -28,6 +28,7 @@ header a:hover,
 }
 
 img {
+	height: auto;
 	width: 100%;
 }
 
