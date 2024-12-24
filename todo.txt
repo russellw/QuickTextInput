@@ -6,6 +6,5 @@ If not, might it suffice to use the 640 version of the header image?
 
 SEO summary text
 
-email endpoint
 
 hsla
