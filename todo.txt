@@ -1,7 +1,8 @@
 Should it still be taking up the entire width of a widescreen anyway?
 If not, might it suffice to use the 640 version of the header image?
 
-
+sitemap
+google
 
 
 SEO summary text
