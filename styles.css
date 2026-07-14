@@ -96,10 +96,6 @@ textarea {
 	gap: 10px;
 }
 
-.lumagraph-logo path {
-	fill: currentColor;
-}
-
 @media (orientation: landscape) {
 	body {
 		margin: GAP;

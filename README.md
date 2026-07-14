@@ -115,7 +115,3 @@ pyinstaller --onefile -w QuickTextInput.py
 ## License
 
 See [LICENSE](LICENSE).
-
----
-
-© Lumagraph Limited
