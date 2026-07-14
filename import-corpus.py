@@ -26,8 +26,7 @@ if args.db:
     db_path = args.db
 else:
     # Default file path
-    user_profile = os.environ["USERPROFILE"]
-    documents_dir = os.path.join(user_profile, "Documents")
+    documents_dir = os.path.join(os.path.expanduser("~"), "Documents")
     db_path = os.path.join(documents_dir, "QuickTextInput.db")
 
 # Path to the text file to import

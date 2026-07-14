@@ -281,8 +281,7 @@ if __name__ == "__main__":
         db_path = args.db
     else:
         # Default file path
-        user_profile = os.environ["USERPROFILE"]
-        documents_dir = os.path.join(user_profile, "Documents")
+        documents_dir = os.path.join(os.path.expanduser("~"), "Documents")
         db_path = os.path.join(documents_dir, "QuickTextInput.db")
 
     # Connect to database
